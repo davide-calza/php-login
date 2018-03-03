@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS phplogin;
+
+CREATE TABLE phplogin.user (
+   id INT(11) AUTO_INCREMENT PRIMARY KEY,
+   name VARCHAR(100) NOT NULL,
+   email VARCHAR(60) NOT NULL ,
+   password VARCHAR(255) NOT NULL,
+    UNIQUE (name),
+    UNIQUE (email)
+) ENGINE = MYISAM;
