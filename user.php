@@ -40,8 +40,7 @@ class User
         return null;
     }
 
-
-    //Login
+    //Register
     //  Execute a user registration
     //  $username = username of the user
     //  $email    = email of the user
@@ -65,5 +64,43 @@ class User
             echo "\nExcept on user registration: " . $e->getMessage();
         }
         return $q;
+    }
+
+    //Login
+    //  Execute a user login (already registered)
+    //  It is either possible do the login with the username or the email
+    //  $username = username of the user
+    //  $email    = email of the user
+    //  $password = password of the user
+    public function Login($username,$email,$password)
+    {
+        try
+        {
+            $q = $this->Query("SELECT id, username, email, password FROM user WHERE username=:username OR email=:email ");
+            $q->execute(array(':username'=>$username, ':email'=>$email));
+            $row=$q->fetch(PDO::FETCH_ASSOC);
+            if($q->rowCount() == 1)
+            {
+                if(password_verify($password, $row['password']))
+                {
+                    $_SESSION['user_session'] = $row['id'];
+                    echo "\nLogin successful";
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Login failed");
+                }
+            }
+        }
+        catch(PDOException $e)
+        {
+            echo "\nException on login: " . $e->getMessage();
+        }
+        catch(Exception $e)
+        {
+            echo "\nException on login: " . $e->getMessage();
+        }
+        return false;
     }
 }
