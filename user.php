@@ -155,4 +155,13 @@ class User
         }
         return false;
     }
+
+    //Logout
+    //  Logout the user from the session
+    public function Logout()
+    {
+        session_destroy();
+        unset($_SESSION['usrSession']);
+        return true;
+    }
 }
