@@ -19,8 +19,8 @@ class User
             $db = new Database();
             $this->conn = $db->Connect($host, $database, $username, $password);
         }
-        catch (Exception $e){
-            echo "Exception on database connection: " . $e->getMessage();
+        catch (PDOException $e){
+            echo "\nException on database connection: " . $e->getMessage();
         }
     }
 
@@ -34,9 +34,36 @@ class User
             echo "\n" . $query;
             return $q;
         }
-        catch (Exception $e){
-            echo "Exception on Query execution: " . $e->getMessage();
+        catch (PDOException $e){
+            echo "\nException on Query execution: " . $e->getMessage();
         }
         return null;
+    }
+
+
+    //Login
+    //  Execute a user registration
+    //  $username = username of the user
+    //  $email    = email of the user
+    //  $password = password of the user
+    public function Register($username,$email,$password)
+    {
+        $q = null;
+        try
+        {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $q = $this->Query("INSERT INTO user(username,email,password) VALUES(:username, :email, :password)");
+            $q->bindparam(":username", $username);
+            $q->bindparam(":email", $email);
+            $q->bindparam(":password", $hash);
+            $q->execute();
+
+            echo "\nRegistration successful";
+        }
+        catch(PDOException $e)
+        {
+            echo "\nExcept on user registration: " . $e->getMessage();
+        }
+        return $q;
     }
 }
