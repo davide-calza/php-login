@@ -7,7 +7,7 @@ class Database
 
     //Connection
     //  Connect to MySQL database using PDO
-    //  $host = hostname
+    //  $host     = hostname
     //  $database = database name
     //  $username = username for accessing the database
     //  $password = password for accessing the database
@@ -17,9 +17,10 @@ class Database
         try {
             $this->conn = new PDO("mysql:host=" . $host . ";dbname=" . $database, $username, $password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo "\nConnected successfully to the database";
         }
         catch (PDOException $e) {
-            echo "Exception on database connection: " . $e->getMessage();
+            echo "\nFailed to connect to the database: " . $e->getMessage();
         }
         return $this->conn;
     }
