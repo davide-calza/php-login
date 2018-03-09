@@ -24,6 +24,13 @@ class User
         }
     }
 
+    //Redirect
+    //  Redirect the user to a specific page
+    public function Redirect($url)
+    {
+        header("Location: $url");
+    }
+
     //Query
     //  Execute a query on the database
     //  $query = query to execute
