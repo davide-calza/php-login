@@ -47,9 +47,9 @@ class User
         return null;
     }
 
-    //LoginCheck
-    //  Check whether the user is logged in or not
-    public function LoginCheck()
+    //LoggedIn
+    //  Check if the user is logged in or not
+    public function LoggedIn()
     {
         //Check if session variable usrSession is set and not null
         if(isset($_SESSION['usrSession']))
