@@ -1,11 +1,11 @@
 <?php
 session_start();
 require_once('user.php');
-$login = new User();
+$user = new User();
 
 //If the user is already logged in, it will be redirected to the home page
-if ($login->LoggedIn()) {
-    $login->redirect('home.php');
+if ($user->LoggedIn()) {
+    $user->redirect('home.php');
 }
 
 if (isset($_POST['btn-login'])) {
@@ -13,10 +13,10 @@ if (isset($_POST['btn-login'])) {
     $email = strip_tags($_POST['txt-name']);
     $password = strip_tags($_POST['txt-password']);
 
-    if ($login->Login($name, $email, $password)) {
-        $login->Redirect('home.php');
+    if ($user->Login($name, $email, $password)) {
+        $user->Redirect('home.php');
     } else {
-        $error = "Login failed";
+        $error = "Invalid credentials";
     }
 }
 ?>
@@ -47,7 +47,7 @@ if (isset($_POST['btn-login'])) {
                         if(isset($error)){
                             ?>
                             <div class="alert alert-danger">
-                               <?php echo $error; ?>!
+                               <?php echo $error; ?>! <a href="register.php" class="alert-link">Sign up</a> now
                             </div>
                             <?php
                         }
@@ -62,7 +62,7 @@ if (isset($_POST['btn-login'])) {
                         <button type="submit" name="btn-login" class="btn btn-default">Sign In</button>
                     </div>
                     <br />
-                    <label>Register now! <a href="register.php">Sign Up</a></label>
+                    <label>Register now! <a href="register.php">Sign up</a></label>
                 </form>
             </div>
         </div>
