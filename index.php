@@ -35,6 +35,14 @@ if (isset($_POST['btn_login'])) {
     <body>
         <div class="signin-form">
             <div class="container">
+                <div id="div_bp">
+                    <button type="button" class="btn btn-default btn-lg" id="btn_showbp" onclick="new function() {$('#btn_bp').show();}">
+                        Show PHP best practises
+                    </button>
+                    <button type="button" class="btn btn-default btn-lg" id="btn_bp">
+                        Use something else :)
+                    </button>
+                </div>
                 <form class="form-signin" method="post" id="login-form">
                     <h2 class="form-signin-heading">Login</h2><hr />
                     <div id="error">
