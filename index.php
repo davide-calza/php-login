@@ -8,10 +8,10 @@ if ($login->LoggedIn()) {
     $login->redirect('home.php');
 }
 
-if (isset($_POST['btn_login'])) {
-    $name = strip_tags($_POST['txt_name']);
-    $email = strip_tags($_POST['txt_name']);
-    $password = strip_tags($_POST['txt_password']);
+if (isset($_POST['btn-login'])) {
+    $name = strip_tags($_POST['txt-name']);
+    $email = strip_tags($_POST['txt-name']);
+    $password = strip_tags($_POST['txt-password']);
 
     if ($login->Login($name, $email, $password)) {
         $login->Redirect('home.php');
@@ -33,22 +33,17 @@ if (isset($_POST['btn_login'])) {
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="signin-form">
+        <div class="login-form">
             <div class="container">
-                <div id="div_bp">
-                    <button type="button" class="btn btn-default btn-lg" id="btn_showbp" onclick="new function() {$('#btn_bp').show();}">
-                        Show PHP best practises
-                    </button>
-                    <button type="button" class="btn btn-default btn-lg" id="btn_bp">
-                        Use something else :)
-                    </button>
+                <div id="div-bp">
+                    <button type="button" class="btn btn-default btn-lg" id="btn-showbp" onclick="new function() {$('#btn-bp').show();}">Show PHP best practises</button>
+                    <button type="button" class="btn btn-default btn-lg" id="btn-bp">Use something else :)</button>
                 </div>
-                <form class="form-signin" method="post" id="login-form">
-                    <h2 class="form-signin-heading">Login</h2><hr />
+                <form class="form-login" method="post" id="login-form">
+                    <h2 class="form-login-header">Login</h2><hr />
                     <div id="error">
                         <?php
-                        if(isset($error))
-                        {
+                        if(isset($error)){
                             ?>
                             <div class="alert alert-danger">
                                 <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?> !
@@ -58,20 +53,20 @@ if (isset($_POST['btn_login'])) {
                         ?>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="txt_name" placeholder="Username or E mail ID" required />
+                        <input type="text" class="form-control" name="txt-name" placeholder="Username or Email" required />
                         <span id="check-e"></span>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="txt_password" placeholder="Your Password" />
+                        <input type="password" class="form-control" name="txt-password" placeholder="Password" />
                     </div>
                     <hr />
                     <div class="form-group">
-                        <button type="submit" name="btn_login" class="btn btn-default">
+                        <button type="submit" name="btn-login" class="btn btn-default">
                             <i class="glyphicon glyphicon-log-in"></i> &nbsp; SIGN IN
                         </button>
                     </div>
                     <br />
-                    <label>Register now! <a href="sign-up.php">Sign Up</a></label>
+                    <label>Register now! <a href="register.php">Sign Up</a></label>
                 </form>
             </div>
         </div>
