@@ -56,15 +56,10 @@ if (isset($_POST['btn-login'])) {
                     <div class="form-group">
                         <input type="text" class="form-control" name="txt-name" placeholder="Username or Email" required />
                         <span id="check-e"></span>
-                    </div>
-                    <div class="form-group">
+                        <br />
                         <input type="password" class="form-control" name="txt-password" placeholder="Password" />
-                    </div>
-                    <hr />
-                    <div class="form-group">
-                        <button type="submit" name="btn-login" class="btn btn-default">
-                            Sign In
-                        </button>
+                        <hr />
+                        <button type="submit" name="btn-login" class="btn btn-default">Sign In</button>
                     </div>
                     <br />
                     <label>Register now! <a href="register.php">Sign Up</a></label>

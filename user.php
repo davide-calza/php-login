@@ -17,7 +17,7 @@ class User
             $this->conn = $db->Connect();
         }
         catch (PDOException $e){
-            echo "\nException on database connection: " . $e->getMessage();
+            $this->Alert("\nException on database connection: " . $e->getMessage());
         }
     }
 
@@ -39,7 +39,7 @@ class User
             return $q;
         }
         catch (PDOException $e){
-            echo "\nException on Query execution: " . $e->getMessage();
+            $this->Alert("\nException on Query execution: " . $e->getMessage());
         }
         return null;
     }
@@ -49,8 +49,7 @@ class User
     public function LoggedIn()
     {
         //Check if session variable usrSession is set and not null
-        if(isset($_SESSION['usrSession']))
-        {
+        if(isset($_SESSION['usrSession'])){
             return true;
         }
         return false;
@@ -76,7 +75,7 @@ class User
         }
         catch(PDOException $e)
         {
-            echo "\nExcept on user registration: " . $e->getMessage();
+            $this->Alert("\nExcept on user registration: " . $e->getMessage());
         }
         return $q;
     }
@@ -110,11 +109,11 @@ class User
         }
         catch(PDOException $e)
         {
-            echo "\nException on login: " . $e->getMessage();
+            $this->Alert("\nException on login: " . $e->getMessage());
         }
         catch(Exception $e)
         {
-            echo "\nException on login: " . $e->getMessage();
+            $this->Alert("\nException on login: " . $e->getMessage());
         }
         return false;
     }
@@ -150,11 +149,11 @@ class User
         }
         catch(PDOException $e)
         {
-            echo "\nException on unregistration: " . $e->getMessage();
+            $this->Alert("\nException on unregistration: " . $e->getMessage());
         }
         catch(Exception $e)
         {
-            echo "\nException on unregistration: " . $e->getMessage();
+            $this->Alert("\nException on unregistration: " . $e->getMessage());
         }
         return false;
     }
@@ -166,5 +165,11 @@ class User
         session_destroy();
         unset($_SESSION['usrSession']);
         return true;
+    }
+
+    public function Alert($msg){
+        echo '<script language="javascript">';
+        echo 'alert("'. $msg . '")';
+        echo '</script>';
     }
 }
