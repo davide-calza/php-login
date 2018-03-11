@@ -1,1 +1,2 @@
 <?php
+echo "HOME.PHP";
