@@ -28,7 +28,7 @@ if (isset($_POST['btn-login'])) {
         <title>PHP Sucks</title>
         <link rel="stylesheet" href="css/style.css" type="text/css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
@@ -36,17 +36,18 @@ if (isset($_POST['btn-login'])) {
         <div class="login-form">
             <div class="container">
                 <div id="div-bp">
-                    <button type="button" class="btn btn-default btn-lg" id="btn-showbp" onclick="new function() {$('#btn-bp').show();}">Show PHP best practises</button>
-                    <button type="button" class="btn btn-default btn-lg" id="btn-bp">Use something else :)</button>
+                    <button type="button" class="btn btn-outline-info btn-lg" id="btn-showbp" onclick="new function() {$('#btn-bp').show();}">Show PHP best practises</button>
+                    <div class="alert alert-info" role="alert" id="btn-bp">1. Use something else :)</div>
                 </div>
                 <form class="form-login" method="post" id="login-form">
-                    <h2 class="form-login-header">Login</h2><hr />
+                    <h2 class="form-login-header">Login</h2>
+                    <hr />
                     <div id="error">
                         <?php
                         if(isset($error)){
                             ?>
                             <div class="alert alert-danger">
-                                <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?> !
+                               <?php echo $error; ?>!
                             </div>
                             <?php
                         }
@@ -62,7 +63,7 @@ if (isset($_POST['btn-login'])) {
                     <hr />
                     <div class="form-group">
                         <button type="submit" name="btn-login" class="btn btn-default">
-                            <i class="glyphicon glyphicon-log-in"></i> &nbsp; SIGN IN
+                            Sign In
                         </button>
                     </div>
                     <br />

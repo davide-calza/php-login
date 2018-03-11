@@ -8,7 +8,7 @@ class User
     private $conn;
 
     //__construct
-    //  User class constructor
+    //  User constructor
     //  Execute a connection to the database
     public function __construct()
     {
@@ -72,8 +72,7 @@ class User
             $q->bindparam(":email", $email);
             $q->bindparam(":password", $hash);
             $q->execute();
-
-            echo "\nRegistration successful";
+            //echo "\nRegistration successful";
         }
         catch(PDOException $e)
         {
@@ -100,7 +99,7 @@ class User
                 if(password_verify($password, $row['password']))
                 {
                     $_SESSION['usrSession'] = $row['id'];
-                    echo "\nLogin successful";
+                    //echo "\nLogin successful";
                     return true;
                 }
                 else
@@ -140,7 +139,7 @@ class User
                     $q->bindparam(":username", $username);
                     $q->bindparam(":email", $email);
                     $q->execute();
-                    echo "\nUnregistration successful";
+                    //echo "\nUnregistration successful";
                     return true;
                 }
                 else
