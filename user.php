@@ -7,17 +7,14 @@ class User
     //Database connection
     private $conn;
 
-    //ConnectDB
-    //  Connect to the Database
-    //  $host     = hostname
-    //  $database = database name
-    //  $username = username for accessing the database
-    //  $password = password for accessing the database
-    public function ConnectDB($host, $database, $username, $password)
+    //__construct
+    //  User class constructor
+    //  Execute a connection to the database
+    public function __construct()
     {
         try{
             $db = new Database();
-            $this->conn = $db->Connect($host, $database, $username, $password);
+            $this->conn = $db->Connect();
         }
         catch (PDOException $e){
             echo "\nException on database connection: " . $e->getMessage();
