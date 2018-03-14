@@ -30,26 +30,33 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
 <body>
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="home.php">Navbar</a>
+    <!--Title-->
+    <a class="navbar-brand" href="home.php">PHP Login</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <!--Collapse buttons-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <!--Home-->
             <li class="nav-item active">
                 <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
             </li>
+            <!--Profile-->
             <li class="nav-item">
                 <a class="nav-link" href="profile.php">My profile</a>
             </li>
         </ul>
+        <!--Right side buttons-->
         <form class="form-inline my-2 my-lg-0">
+            <!--Search input-->
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+            <!--Search button-->
+            <button class="btn btn-outline-info my-2 my-sm-0 mr-sm-2" type="submit">Search</button>
+            <a class="btn btn-info my-2 my-sm-0" href="logout.php?logout=true">Logout</a>
         </form>
     </div>
-<!---------->
 </nav>
 </body>
 </html>
