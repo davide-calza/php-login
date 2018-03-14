@@ -49,7 +49,7 @@ class User
     public function LoggedIn()
     {
         //Check if session variable usrSession is set and not null
-        if(isset($_SESSION['usrSession'])){
+        if(isset($_SESSION['user-session'])){
             return true;
         }
         return false;
@@ -97,7 +97,7 @@ class User
             {
                 if(password_verify($password, $row['password']))
                 {
-                    $_SESSION['usrSession'] = $row['id'];
+                    $_SESSION['user-session'] = $row['id'];
                     //echo "\nLogin successful";
                     return true;
                 }
@@ -163,7 +163,7 @@ class User
     public function Logout()
     {
         session_destroy();
-        unset($_SESSION['usrSession']);
+        unset($_SESSION['user-session']);
         return true;
     }
 
