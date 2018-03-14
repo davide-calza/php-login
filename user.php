@@ -23,6 +23,7 @@ class User
 
     //Redirect
     //  Redirect the user to a specific page
+    //  $url = given url for the user to be redirected
     public function Redirect($url)
     {
         header("Location: $url");
@@ -48,7 +49,7 @@ class User
     //  Check if the user is logged in or not
     public function LoggedIn()
     {
-        //Check if session variable usrSession is set and not null
+        //Check if session variable user-session is set and not null
         if(isset($_SESSION['user-session'])){
             return true;
         }
@@ -167,6 +168,9 @@ class User
         return true;
     }
 
+    //Alert
+    //  Show a JavaScript alert
+    //  $msg = message to display
     public function Alert($msg){
         echo '<script language="javascript">';
         echo 'alert("'. $msg . '")';

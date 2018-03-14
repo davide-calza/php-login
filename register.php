@@ -3,10 +3,12 @@ session_start();
 require_once("user.php");
 $user = new User();
 
+//If users are already logged in, they will be redirected to Home
 if ($user->LoggedIn()) {
     $user->Redirect("home.php");
 }
 
+//Check registration input
 if (isset($_POST['btn-signup'])) {
     $name = strip_tags($_POST['txt-name']);
     $email = strip_tags($_POST['txt-email']);
@@ -66,12 +68,15 @@ if (isset($_POST['btn-signup'])) {
 <body>
 <div class="login-form">
     <div class="container">
+        <!--PHP Best Practices :)-->
         <div id="div-bp">
             <button type="button" class="btn btn-outline-info btn-lg" id="btn-showbp"
-                    onclick="new function() {$('#btn-bp').show();}">Show PHP best practises
+                    onclick="new function() {$('#btn-bp').show();}">Show PHP best practices
             </button>
             <div class="alert alert-info" role="alert" id="btn-bp">1. Use something else :)</div>
         </div>
+
+        <!--Registration form-->
         <form method="post" class="form-login">
             <h2 class="form-login-header">Sign Up</h2>
             <hr/>
@@ -79,6 +84,7 @@ if (isset($_POST['btn-signup'])) {
             if (isset($error)) {
                 foreach ($error as $error) {
                     ?>
+                    <!--Error alert-->
                     <div class="alert alert-danger">
                         <?php echo $error; ?>
                     </div>
@@ -86,6 +92,7 @@ if (isset($_POST['btn-signup'])) {
                 }
             } else if (isset($_GET['joined'])) {
                 ?>
+                <!--Success alert-->
                 <div class="alert alert-success">
                     Successfully registered! <a href="index.php" class="alert-link">Login here </a>
                 </div>
@@ -93,22 +100,27 @@ if (isset($_POST['btn-signup'])) {
             }
             ?>
             <div class="form-group">
+                <!--Username-->
                 <input type="text" class="form-control" name="txt-name" placeholder="Enter Username"
                        value="<?php if (isset($error)) {
                            echo $name;
                        } ?>"/>
                 <br />
+                <!--Email-->
                 <input type="text" class="form-control" name="txt-email" placeholder="Enter Email"
                        value="<?php if (isset($error)) {
                            echo $email;
                        } ?>"/>
                 <br />
+                <!--Password-->
                 <input type="password" class="form-control" name="txt-password" placeholder="Enter Password"/>
-            <div class="clearfix"></div>
-            <hr/>
+                <div class="clearfix"></div>
+                <hr/>
+                <!--Submit button-->
                 <button type="submit" class="btn btn-outline-info" name="btn-signup">Sign up</button>
             </div>
             <br/>
+            <!--Sign in disclaimer-->
             <label>Already have an account? <a href="index.php">Sign in</a></label>
         </form>
     </div>

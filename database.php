@@ -2,14 +2,14 @@
 
 class Database
 {
-    //Database configuration
-    public $conn;
+    public $conn; // Database connection
 
-    private $host = "localhost";
-    private $database = "phplogin";
-    private $username = "root";
-    private $password = "root";
+    private $host = "localhost";    //Database host
+    private $database = "phplogin"; //Database name
+    private $username = "root";     //Database username
+    private $password = "root";     //Database password
 
+    //Connect to the database with PDO
     public function Connect()
     {
         $this->conn = null;

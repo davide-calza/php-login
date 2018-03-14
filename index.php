@@ -8,6 +8,7 @@ if ($user->LoggedIn()) {
     $user->redirect('home.php');
 }
 
+//Login check
 if (isset($_POST['btn-login'])) {
     $name = strip_tags($_POST['txt-name']);
     $email = strip_tags($_POST['txt-name']);
@@ -41,15 +42,18 @@ if (isset($_POST['btn-login'])) {
 <body>
 <div class="login-form">
     <div class="container">
+        <!--PHP Best Practices :)-->
         <div id="div-bp">
             <button type="button" class="btn btn-outline-info btn-lg" id="btn-showbp"
-                    onclick="new function() {$('#btn-bp').show();}">Show PHP best practises
+                    onclick="new function() {$('#btn-bp').show();}">Show PHP best practices
             </button>
             <div class="alert alert-info" role="alert" id="btn-bp">1. Use something else :)</div>
         </div>
+        <!--Login form-->
         <form class="form-login" method="post" id="login-form">
             <h2 class="form-login-header">Sign In</h2>
             <hr/>
+            <!--Error alert-->
             <div id="error">
                 <?php
                 if (isset($error)) {
@@ -62,14 +66,18 @@ if (isset($_POST['btn-login'])) {
                 ?>
             </div>
             <div class="form-group">
+                <!--Username or Email-->
                 <input type="text" class="form-control" name="txt-name" placeholder="Enter Username or Email" required/>
                 <span id="check-e"></span>
                 <br/>
+                <!--Password-->
                 <input type="password" class="form-control" name="txt-password" placeholder="Enter Password"/>
                 <hr/>
+                <!--Submit button-->
                 <button type="submit" name="btn-login" class="btn btn-outline-info">Sign in</button>
             </div>
             <br/>
+            <!--Registration disclaimer-->
             <label>Not registered yet? <a href="register.php">Sign up now!</a></label>
         </form>
     </div>
