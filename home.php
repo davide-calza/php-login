@@ -58,5 +58,44 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
         </form>
     </div>
 </nav>
+<!--Body-->
+<div class="row" id="home-body">
+    <!--Users list-->
+    <div class="col-md-5">
+        <div class="list-group" id="div-users-list">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-info active">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">username</h5>
+                            <small>joined on: date</small>
+                        </div>
+                        <p class="mb-1">email</p>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-outline-light btn-lg my-2 my-sm-0 mr-sm-2" type="submit" style="height: 100%; width: 100%;">Modify</button>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">username</h5>
+                            <small>joined on: date</small>
+                        </div>
+                        <p class="mb-1">email</p>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-outline-light btn-lg my-2 my-sm-0 mr-sm-2" type="submit" style="height: 100%; width: 100%;">Modify</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-7">
+
+    </div>
+</div>
 </body>
 </html>

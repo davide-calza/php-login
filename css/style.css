@@ -78,3 +78,12 @@ h1{
     width: 500px;
     text-align: center;
 }
+
+/*Home.php*/
+#div-users-list{
+    margin: 30px;
+}
+
+#home-body{
+    background: #263238;
+}
