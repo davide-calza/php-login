@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("user.php");
+require_once("scripts/user.php");
 $user = new User();
 
 //If users are already logged in, they will be redirected to Home
@@ -124,7 +124,6 @@ if (isset($_POST['btn-signup'])) {
             <label>Already have an account? <a href="index.php">Sign in</a></label>
         </form>
     </div>
-</div>
 </div>
 </body>
 </html>

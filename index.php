@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('user.php');
+require_once('scripts/user.php');
 $user = new User();
 
 //If the user is already logged in, it will be redirected to the home page

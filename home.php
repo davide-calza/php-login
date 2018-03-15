@@ -1,17 +1,13 @@
 <?php
 require_once("session.php");
-require_once("user.php");
-require_once("scripts.php");
+require_once("scripts/user.php");
+require_once("scripts/scripts.php");
 $user = new User();
 $id = $_SESSION['user-session'];
 
 $query = $user->Query("SELECT * FROM user WHERE id=:id");
 $query->execute(array(":id" => $id));
 $row = $query->fetch(PDO::FETCH_ASSOC);
-
-if (isset($_POST['btn-login'])) {
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +26,7 @@ if (isset($_POST['btn-login'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="scripts/script.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -39,7 +36,7 @@ if (isset($_POST['btn-login'])) {
     <a class="navbar-brand" href="home.php">PHP Login</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" />
     </button>
     <!--Collapse buttons-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
