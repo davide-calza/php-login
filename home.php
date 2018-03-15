@@ -70,7 +70,7 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
             ?>
         </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7" id="div-modify-user">
 
     </div>
 </div>
