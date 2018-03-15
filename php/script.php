@@ -19,7 +19,7 @@ class Script
                             <p class="mb-1">' . $r['email'] . '</p>
                         </div>
                         <div class="col-md-3">
-                            <button id="btn-' . $r['username'] .'" class="btn btn-outline-info btn-lg my-2 my-sm-0 mr-sm-2" type="submit" style="height: 100%; width: 100%;" onclick="ModifyUser(\'' . $r['username'] . '\', \'div-modify-user\')">Modify</button>
+                            <button id="btn-' . $r['username'] .'" class="btn btn-outline-info btn-lg my-2 my-sm-0 mr-sm-2" type="submit" style="height: 100%; width: 100%;" onclick="ModifyUser(\'' . $r['username'] . '\', \'' . $r['email'] . '\', \'div-modify-user\')">Modify</button>
                         </div>
                     </div>
                 </a>');
