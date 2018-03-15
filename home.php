@@ -7,6 +7,27 @@ $id = $_SESSION['user-session'];
 $query = $user->Query("SELECT * FROM user WHERE id=:id");
 $query->execute(array(":id" => $id));
 $row = $query->fetch(PDO::FETCH_ASSOC);
+
+function GenerateList($user){
+    $users = $user->Query('SELECT username, email, joining FROM user ORDER BY joining DESC');
+    $users->execute();
+    foreach ($users as $r){
+        print('<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">' . $r['username'] . '</h5>
+                                <small>joined on:' . $r['joining'] . '</small>
+                            </div>
+                            <p class="mb-1">' . $r['email'] . '</p>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-outline-info btn-lg my-2 my-sm-0 mr-sm-2" type="submit" style="height: 100%; width: 100%;">Modify</button>
+                        </div>
+                    </div>
+                </a>');
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,30 +85,7 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
     <div class="col-md-5">
         <div class="list-group" id="div-users-list">
             <?php
-            $users = $user->Query('SELECT username, email, joining FROM user ORDER BY joining DESC');
-            $users->execute();
-            foreach ($users as $r){
-                print('<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">' .
-                                    $r['username'] .
-                                '</h5>
-                                <small>joined on:' .
-                                    $r['joining'] .
-                                '</small>
-                            </div>
-                            <p class="mb-1">' .
-                                $r['email'] .
-                            '</p>
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn btn-outline-info btn-lg my-2 my-sm-0 mr-sm-2" type="submit" style="height: 100%; width: 100%;">Modify</button>
-                        </div>
-                    </div>
-                </a>');
-            }
+            GenerateList($user);
             ?>
         </div>
     </div>
