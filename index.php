@@ -1,12 +1,11 @@
 <?php
 session_start();
-require_once('scripts/user.php');
+require_once('php/user.php');
+require_once('php/script.php');
 $user = new User();
 
 //If the user is already logged in, it will be redirected to the home page
-if ($user->LoggedIn()) {
-    $user->redirect('home.php');
-}
+Script::RedirectToHome($user);
 
 //Login check
 if (isset($_POST['btn-login'])) {

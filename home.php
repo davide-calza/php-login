@@ -1,7 +1,7 @@
 <?php
 require_once("session.php");
-require_once("scripts/user.php");
-require_once("scripts/scripts.php");
+require_once("php/user.php");
+require_once("php/script.php");
 $user = new User();
 $id = $_SESSION['user-session'];
 
@@ -26,7 +26,7 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-    <script src="scripts/script.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -66,7 +66,7 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
     <div class="col-md-5">
         <div class="list-group" id="div-users-list">
             <?php
-            Scripts::GenerateList($user);
+            Script::GenerateList($user);
             ?>
         </div>
     </div>

@@ -1,14 +1,13 @@
 <?php
 session_start();
-require_once("scripts/user.php");
+require_once("php/user.php");
+require_once('php/script.php');
 $user = new User();
 
 //If users are already logged in, they will be redirected to Home
-if ($user->LoggedIn()) {
-    $user->Redirect("home.php");
-}
+Script::RedirectToHome($user);
 
-//Check registration input
+//Registration check
 if (isset($_POST['btn-signup'])) {
     $name = strip_tags($_POST['txt-name']);
     $email = strip_tags($_POST['txt-email']);

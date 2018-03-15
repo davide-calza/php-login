@@ -1,10 +1,8 @@
 <?php
 session_start();
-require_once('scripts/user.php');
+require_once('php/user.php');
+require_once('php/script.php');
 $session=new User();
 
 //If the user is not logged in, it will be redirected to the login page
-if(!$session->LoggedIn()) {
-    //redirect to login page
-    $session->Redirect('index.php');
-}
+Script::RedirectToLogin($session);

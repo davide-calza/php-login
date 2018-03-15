@@ -1,6 +1,6 @@
 <?php
 
-class Scripts
+class Script
 {
     public static function GenerateList($db){
         $users = $db->Query('SELECT username, email, joining FROM user ORDER BY joining DESC');
@@ -20,6 +20,18 @@ class Scripts
                         </div>
                     </div>
                 </a>');
+        }
+    }
+
+    public static function RedirectToLogin($session){
+        if(!$session->LoggedIn()) {
+            $session->Redirect('index.php');
+        }
+    }
+
+    public static function RedirectToHome($session){
+        if($session->LoggedIn()) {
+            $session->Redirect('home.php');
         }
     }
 }
