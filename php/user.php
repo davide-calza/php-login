@@ -19,6 +19,10 @@ class User
         catch (PDOException $e){
             $this->Alert("\nException on database connection: " . $e->getMessage());
         }
+        catch(Exception $e)
+        {
+            $this->Alert("\nException on database connection: " . $e->getMessage());
+        }
     }
 
     //Redirect
@@ -40,6 +44,10 @@ class User
             return $q;
         }
         catch (PDOException $e){
+            $this->Alert("\nException on Query execution: " . $e->getMessage());
+        }
+        catch(Exception $e)
+        {
             $this->Alert("\nException on Query execution: " . $e->getMessage());
         }
         return null;
@@ -77,6 +85,10 @@ class User
         catch(PDOException $e)
         {
             $this->Alert("\nExcept on user registration: " . $e->getMessage());
+        }
+        catch(Exception $e)
+        {
+            $this->Alert("\nException on registration: " . $e->getMessage());
         }
         return $q;
     }
@@ -155,6 +167,51 @@ class User
         catch(Exception $e)
         {
             $this->Alert("\nException on unregistration: " . $e->getMessage());
+        }
+        return false;
+    }
+
+    //Update
+    //  Execute a user informations update
+    //  $oldusername = old username of the user
+    //  $oldpassword = old password of the user
+    //  $oldmail     = old email of the user
+    //  $username    = new username of the user
+    //  $email       = new email of the user
+    //  $password    = new password of the user
+    public function Update($oldusername, $oldmail, $oldpassword, $username, $email, $password){
+
+        try
+        {
+            $q = $this->Query("SELECT id, username, email, password FROM user WHERE username=:username OR email=:email ");
+            $q->execute(array(':username'=>$oldusername, ':email'=>$oldmail));
+            $row=$q->fetch(PDO::FETCH_ASSOC);
+            if($q->rowCount() == 1)
+            {
+                if(password_verify($oldpassword, $row['password']))
+                {
+                    $hash = password_hash($password, PASSWORD_DEFAULT);
+                    $q = $this->Query("UPDATE user SET username = :username, email = :email, password = :password WHERE username = :oldusername");
+                    $q->bindparam(":username", $username);
+                    $q->bindparam(":email", $email);
+                    $q->bindparam(":password", $hash);
+                    $q->bindparam(":oldusername", $oldusername);
+                    $q->execute();
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Update failed");
+                }
+            }
+        }
+        catch(PDOException $e)
+        {
+            $this->Alert("\nException on update: " . $e->getMessage());
+        }
+        catch(Exception $e)
+        {
+            $this->Alert("\nException on update: " . $e->getMessage());
         }
         return false;
     }
