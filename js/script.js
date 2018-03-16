@@ -30,7 +30,7 @@ function ModifyUser(name, email, divmod) {
         "  <div id='div-modify-user-btns'> " +
         "    <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' name='btn-update'>Update User</button>" +
         "    <button type='submit' class='btn btn-outline-danger my-3 my-sm-0 mr-sm-3' name='btn-delete'>Delete User</button>" +
-        "    <button type='submit' class='btn btn-outline-info' name='btn-cancel'>Cancel</button>" +
+        "    <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelDiv(\"" + divmod + "\")'>Cancel</button>" +
         "  </div>" +
         "</form>";
 
@@ -45,4 +45,10 @@ function CheckNewPasswordRetype(id1, id2){
     if(pw2==="" || pw2===null){}
     else if(pw1===pw2){ $("#"+id2).addClass("is-valid"); }
     else{ $("#"+id2).addClass("is-invalid"); }
+}
+
+function CancelDiv(id){
+    $("#"+id).html(" ");
+    $(".active").removeClass('active');
+    $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
 }
