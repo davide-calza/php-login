@@ -25,7 +25,7 @@ function ModifyUser(name, email, divmod) {
         "  </div>" +
         "  <div class='form-group'>" +
         "    <label for='lbl-retpwd'>Retype New Password</label>" +
-        "    <input type='password' class='form-control' id='txt-retpwd' placeholder='Retype New Password'>" +
+        "    <input type='password' class='form-control' id='txt-retpwd' placeholder='Retype New Password' onkeyup='CheckNewPasswordRetype(\"txt-newpwd\", \"txt-retpwd\")'>" +
         "  </div>" +
         "  <div id='div-modify-user-btns'> " +
         "    <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' name='btn-update'>Update User</button>" +
@@ -35,4 +35,14 @@ function ModifyUser(name, email, divmod) {
         "</form>";
 
     $('#' + divmod).html(str);
+}
+
+function CheckNewPasswordRetype(id1, id2){
+    pw1 = $("#"+id1).val();
+    pw2 = $("#"+id2).val();
+
+    $("#"+id2).removeClass("is-invalid").removeClass("is-valid");
+    if(pw2==="" || pw2===null){}
+    else if(pw1===pw2){ $("#"+id2).addClass("is-valid"); }
+    else{ $("#"+id2).addClass("is-invalid"); }
 }
