@@ -7,12 +7,30 @@ function ModifyUser(name, email, divmod) {
     const str =
         "<form id='form-modify-user'>" +
         "  <div class='form-group'>" +
-        "    <label for='formGroupExampleInput'>Username</label>" +
+        "    <label for='lbl-username'>Username</label>" +
         "    <input type='text' class='form-control' id='txt-username' placeholder='Enter Username' value='"+name+"'>" + 
         "  </div>" +
         "  <div class='form-group'>" +
-        "    <label for='formGroupExampleInput2'>Email</label>" +
+        "    <label for='lbl-email'>Email</label>" +
         "    <input type='text' class='form-control' id='txt-email' placeholder='Enter Email' value='"+email+"'>" +
+        "  </div>" +
+        "  <br />" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-oldpwd'>Old Password</label>" +
+        "    <input type='password' class='form-control' id='txt-oldpwd' placeholder='Enter Old Password'>" +
+        "  </div>" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-newpwd'>New Password</label>" +
+        "    <input type='password' class='form-control' id='txt-newpwd' placeholder='Enter New Password'>" +
+        "  </div>" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-retpwd'>Retype New Password</label>" +
+        "    <input type='password' class='form-control' id='txt-retpwd' placeholder='Retype New Password'>" +
+        "  </div>" +
+        "  <div id='div-modify-user-btns'> " +
+        "    <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' name='btn-update'>Update User</button>" +
+        "    <button type='submit' class='btn btn-outline-danger my-3 my-sm-0 mr-sm-3' name='btn-delete'>Delete User</button>" +
+        "    <button type='submit' class='btn btn-outline-info' name='btn-cancel'>Cancel</button>" +
         "  </div>" +
         "</form>";
 

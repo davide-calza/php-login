@@ -105,3 +105,9 @@ h1{
     font-family:Roboto, Tahoma, Geneva, sans-serif;
     font-size: 1.5em;
 }
+
+#div-modify-user-btns{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+}
