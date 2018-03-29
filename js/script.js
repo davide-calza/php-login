@@ -2,10 +2,10 @@ function ModifyUser(name, email, divmod) {
     document.cookie=
     $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
-    $('.badge-light').removeClass('badge-light').addClass('badge-primary');
+    $('.badge-light').removeClass('badge-light').addClass('badge-info');
     $('#item-' + name).addClass('active');
     $('#btn-' + name).removeClass('btn-outline-info').addClass('btn-outline-light');
-    $('#badge-' + name).removeClass('badge-primary').addClass('badge-light');
+    $('#badge-' + name).removeClass('badge-info').addClass('badge-light');
 
     const str =
         "<form id='form-modify-user'>" +
@@ -26,6 +26,7 @@ function ModifyUser(name, email, divmod) {
         "    <label for='lbl-retpwd'>Retype New Password</label>" +
         "    <input type='password' class='form-control' name='txt-retpwd' id='txt-retpwd' placeholder='Retype New Password' onkeyup='CheckNewPasswordRetype(\"txt-newpwd\", \"txt-retpwd\")'>" +
         "  </div>" +
+        "  <br />" +
         "  <div class='row' id='div-modify-user-btns'> " +
         "    <div class='col-md-6'>"+
         "      <div class='input-group mb-3'>" +
@@ -37,7 +38,7 @@ function ModifyUser(name, email, divmod) {
         "    </div>"+
         "    <div class='col-md-6'>"+
         "      <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-update' name='btn-update' value='" + name + "_"+email+"' formmethod='post'>Update User</button>" +
-        "      <button type='submit' class='btn btn-outline-danger my-3 my-sm-0 mr-sm-3' name='btn-delete'>Delete User</button>" +
+        "      <button type='submit' class='btn btn-outline-danger my-3 my-sm-0 mr-sm-3' id='btn-delete' name='btn-delete' value='" + name + "_"+email+"' formmethod='post'>Delete User</button>" +
         "      <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
         "    </div>"+
         "  </div>"+

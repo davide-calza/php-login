@@ -11,7 +11,7 @@ class Script
         foreach ($users as $r){
             if($r['username'] == $name){
                 $list_name = '<h5 class="mb-1"><strong>' . $r['username'] . '</strong></h5>';
-                $ind = '<span class="badge badge-primary badge-pill" id="badge-'.$name.'">You</span>';
+                $ind = '<span class="badge badge-info badge-pill" id="badge-'.$name.'">You</span>';
             }
             else{
                 $list_name = '<h5 class="mb-1">' . $r['username'] . '</h5>';

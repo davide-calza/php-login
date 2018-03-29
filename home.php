@@ -27,6 +27,18 @@ if (isset($_POST['btn-update'])){
         $error = "Incorrect password!";
     }
 }
+
+if (isset($_POST['btn-delete'])){
+    $name = explode('_',$_POST['btn-delete'])[0];
+    $email = explode('_',$_POST['btn-delete'])[1];
+    $password = strip_tags($_POST['txt-pwd']);
+    if ($user->Unregister($name, $email, $password)){
+        $success = "User successfully deleted";
+    }
+    else{
+        $error = "Incorrect password!";
+    }
+}
 ?>
 
 <!DOCTYPE html>

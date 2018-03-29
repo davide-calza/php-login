@@ -136,16 +136,16 @@ class User
     //  $username = username of the user
     //  $email    = email of the user
     //  $password = password of the user
-    public function Unregister($username,$email,$password)
+    public function Unregister($username,$email,$sessionpwd)
     {
         try
         {
-            $q = $this->Query("SELECT id, username, email, password FROM user WHERE username=:username OR email=:email ");
-            $q->execute(array(':username'=>$username, ':email'=>$email));
+            $q = $this->Query("SELECT id, username, email, password FROM user WHERE id=:id ");
+            $q->execute(array(':id'=>$_SESSION['user-session']));
             $row=$q->fetch(PDO::FETCH_ASSOC);
             if($q->rowCount() == 1)
             {
-                if(password_verify($password, $row['password']))
+                if(password_verify($sessionpwd, $row['password']))
                 {
                     $q = $this->Query("DELETE FROM user WHERE username=:username OR email=:email ");
                     $q->bindparam(":username", $username);
@@ -180,7 +180,6 @@ class User
     //  $email       = new email of the user
     //  $password    = new password of the user
     public function Update($oldusername, $oldmail, $sessionpwd, $username, $email, $password){
-
         try
         {
             $q = $this->Query("SELECT id, username, email, password FROM user WHERE id=:id ");
