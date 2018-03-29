@@ -26,10 +26,10 @@ function ModifyUser(name, email, divmod) {
         "  <br />" +
         "  <div class='form-group'>" +
         "    <label for='lbl-oldpwd'>Password</label>" +
-        "    <input type='password' class='form-control' id='txt-pwd' placeholder='Enter your current Password'>" +
+        "    <input type='password' class='form-control' name='txt-pwd' id='txt-pwd' placeholder='Enter your current Password'>" +
         "  </div>" +
         "  <div id='div-modify-user-btns'> " +
-        "    <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' name='btn-update'>Update User</button>" +
+        "    <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-update' name='btn-update' value='" + name + "' formmethod='post'>Update User</button>" +
         "    <button type='submit' class='btn btn-outline-danger my-3 my-sm-0 mr-sm-3' name='btn-delete'>Delete User</button>" +
         "    <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
         "  </div>" +
