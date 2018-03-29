@@ -1,8 +1,10 @@
 function ModifyUser(name, email, divmod) {
     $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
+    $('.badge-light').removeClass('badge-light').addClass('badge-primary');
     $('#item-' + name).addClass('active');
     $('#btn-' + name).removeClass('btn-outline-info').addClass('btn-outline-light');
+    $('#badge-' + name).removeClass('badge-primary').addClass('badge-light');
 
     const str =
         "<form id='form-modify-user'>" +
