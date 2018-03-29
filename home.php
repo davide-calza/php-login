@@ -13,6 +13,7 @@ if (isset($_POST['btn-update'])){
     $name = $_POST['txt-username'];
     $email = $_POST['txt-email'];
     $password = $_POST['txt-newpwd'];
+    $retpwd = $_POST['txt-retpwd'];
     $ownpwd = strip_tags($_POST['txt-pwd']);
     if ($user->Login($row['username'], $row['email'], $ownpwd)){
         $success = "User successfully updated";

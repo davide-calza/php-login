@@ -21,7 +21,7 @@ function ModifyUser(name, email, divmod) {
         "  </div>" +
         "  <div class='form-group'>" +
         "    <label for='lbl-retpwd'>Retype New Password</label>" +
-        "    <input type='password' class='form-control' id='txt-retpwd' placeholder='Retype New Password' onkeyup='CheckNewPasswordRetype(\"txt-newpwd\", \"txt-retpwd\")'>" +
+        "    <input type='password' class='form-control' name='txt-retpwd' id='txt-retpwd' placeholder='Retype New Password' onkeyup='CheckNewPasswordRetype(\"txt-newpwd\", \"txt-retpwd\")'>" +
         "  </div>" +
         "  <br />" +
         "  <div class='form-group'>" +

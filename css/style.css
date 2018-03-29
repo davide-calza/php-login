@@ -92,7 +92,6 @@ h1{
     padding: 30px 60px 30px;
     background-color: #fff;
     margin: 30px;
-    height: 100%;
 
     border: 1px solid #e5e5e5;
     -webkit-border-radius: 5px;
@@ -107,9 +106,7 @@ h1{
 }
 
 #div-modify-user-btns{
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 #alert-mod-user-error{
