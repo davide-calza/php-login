@@ -12,7 +12,7 @@ function ModifyUser(name, email, divmod) {
         "  </div>" +
         "  <div class='form-group'>" +
         "    <label for='lbl-email'>Email</label>" +
-        "    <input type='email' class='form-control' id='txt-email' placeholder='Enter Email' value='"+email+"'>" +
+        "    <input type='email' class='form-control' id='txt-email' name='txt-email' placeholder='Enter Email' value='"+email+"'>" +
         "  </div>" +
         "  <br />" +
         "  <div class='form-group'>" +
@@ -52,4 +52,15 @@ function CancelButton(id){
     $("#"+id).html(" ");
     $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
+}
+
+function ErrorAlert(form_id, msg, txt_id){
+    str='<div id="alert-mod-user-error" class="alert alert-danger alert-dismissible fade show" role="alert">' +
+        '  <strong>Error!</strong> ' + msg +
+        '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        '  </button>' +
+        '</div>';
+    $('#'+form_id).prepend(str);
+    $('#'+txt_id).addClass("is-invalid");
 }

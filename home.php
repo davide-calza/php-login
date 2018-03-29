@@ -11,7 +11,7 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
 
 if (isset($_POST['btn-update'])){
     $name = $_POST['btn-update'];
-    $email = $_POST['btn-update'];
+    $email = $_POST['txt-email'];
     $password = strip_tags($_POST['txt-pwd']);
     if ($user->Login($name, $email, $password)){
         $success = "User successfully updated";
@@ -94,5 +94,18 @@ if (isset($_POST['btn-update'])){
     </div>
     <div class="col-md-7" id="div-modify-user"></div>
 </div>
+
+<script>
+    <?php
+    if(isset($error)){
+    ?>
+    ModifyUser(<?php echo '"'.$name.'","'.$email.'","div-modify-user"'; ?>);
+    ErrorAlert('form-modify-user', '<?php echo $error ?>', 'txt-pwd');
+    <?php
+    unset($error);
+    }
+    ?>
+</script>
+
 </body>
 </html>

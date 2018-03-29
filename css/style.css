@@ -113,7 +113,7 @@ h1{
 }
 
 #alert-mod-user-error{
-    display: none;
+    font-size: 20px;
 }
 
 #btn-adduser{
