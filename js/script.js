@@ -26,16 +26,21 @@ function ModifyUser(name, email, divmod) {
         "    <label for='lbl-retpwd'>Retype New Password</label>" +
         "    <input type='password' class='form-control' name='txt-retpwd' id='txt-retpwd' placeholder='Retype New Password' onkeyup='CheckNewPasswordRetype(\"txt-newpwd\", \"txt-retpwd\")'>" +
         "  </div>" +
-        "  <br />" +
-        "  <div class='form-group'>" +
-        "    <label for='lbl-oldpwd'>Password</label>" +
-        "    <input type='password' class='form-control' name='txt-pwd' id='txt-pwd' placeholder='Enter your current Password'>" +
-        "  </div>" +
-        "  <div id='div-modify-user-btns'> " +
-        "    <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-update' name='btn-update' value='" + name + "_"+email+"' formmethod='post'>Update User</button>" +
-        "    <button type='submit' class='btn btn-outline-danger my-3 my-sm-0 mr-sm-3' name='btn-delete'>Delete User</button>" +
-        "    <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
-        "  </div>" +
+        "  <div class='row' id='div-modify-user-btns'> " +
+        "    <div class='col-md-6'>"+
+        "      <div class='input-group mb-3'>" +
+        "         <div class='input-group-prepend'>" +
+        "             <span class='input-group-text' id='basic-addon1'>Password</span>" +
+        "         </div>"+
+        "         <input type='password' class='form-control' name='txt-pwd' id='txt-pwd' aria-label='Password' aria-describedby='basic-addon1' placeholder='Enter your current Password'>" +
+        "      </div>" +
+        "    </div>"+
+        "    <div class='col-md-6'>"+
+        "      <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-update' name='btn-update' value='" + name + "_"+email+"' formmethod='post'>Update User</button>" +
+        "      <button type='submit' class='btn btn-outline-danger my-3 my-sm-0 mr-sm-3' name='btn-delete'>Delete User</button>" +
+        "      <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
+        "    </div>"+
+        "  </div>"+
         "</form>";
 
     $('#' + divmod).html(str);
