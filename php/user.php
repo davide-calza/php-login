@@ -179,23 +179,25 @@ class User
     //  $username    = new username of the user
     //  $email       = new email of the user
     //  $password    = new password of the user
-    public function Update($oldusername, $oldmail, $oldpassword, $username, $email, $password){
+    public function Update($oldusername, $oldmail, $sessionpwd, $username, $email, $password){
 
         try
         {
-            $q = $this->Query("SELECT id, username, email, password FROM user WHERE username=:username OR email=:email ");
-            $q->execute(array(':username'=>$oldusername, ':email'=>$oldmail));
+            $q = $this->Query("SELECT id, username, email, password FROM user WHERE id=:id ");
+            $q->execute(array(':id'=>$_SESSION['user-session']));
             $row=$q->fetch(PDO::FETCH_ASSOC);
             if($q->rowCount() == 1)
             {
-                if(password_verify($oldpassword, $row['password']))
+                if(password_verify($sessionpwd, $row['password']))
                 {
                     $hash = password_hash($password, PASSWORD_DEFAULT);
-                    $q = $this->Query("UPDATE user SET username = :username, email = :email, password = :password WHERE username = :oldusername");
+                    $q = $this->Query("UPDATE user SET username = :username, email = :email, password = :password WHERE username = :oldusername OR email=:oldmail");
                     $q->bindparam(":username", $username);
                     $q->bindparam(":email", $email);
                     $q->bindparam(":password", $hash);
                     $q->bindparam(":oldusername", $oldusername);
+                    $q->bindparam(":oldmail", $oldmail);
+
                     $q->execute();
                     return true;
                 }

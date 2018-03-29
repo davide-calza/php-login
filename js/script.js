@@ -1,4 +1,5 @@
 function ModifyUser(name, email, divmod) {
+    document.cookie=
     $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
     $('.badge-light').removeClass('badge-light').addClass('badge-primary');
@@ -31,7 +32,7 @@ function ModifyUser(name, email, divmod) {
         "    <input type='password' class='form-control' name='txt-pwd' id='txt-pwd' placeholder='Enter your current Password'>" +
         "  </div>" +
         "  <div id='div-modify-user-btns'> " +
-        "    <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-update' name='btn-update' value='" + name + "' formmethod='post'>Update User</button>" +
+        "    <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-update' name='btn-update' value='" + name + "_"+email+"' formmethod='post'>Update User</button>" +
         "    <button type='submit' class='btn btn-outline-danger my-3 my-sm-0 mr-sm-3' name='btn-delete'>Delete User</button>" +
         "    <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
         "  </div>" +
