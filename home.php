@@ -89,7 +89,7 @@ if (isset($_POST['btn-update'])){
             <?php
                 unset($success);
             }
-            Script::GenerateList($user);
+            Script::GenerateList($user, $row['username']);
             ?>
             <button type="button" class="btn btn-info btn-lg" id="btn-adduser">+</button>
         </div>
