@@ -8,7 +8,7 @@ function ModifyUser(name, email, divmod) {
         "<form id='form-modify-user'>" +
         "  <div class='form-group'>" +
         "    <label for='lbl-username'>Username</label>" +
-        "    <input type='text' class='form-control' id='txt-username' placeholder='Enter Username' value='"+name+"'>" + 
+        "    <input type='text' class='form-control' name='txt-username' id='txt-username' placeholder='Enter Username' value='"+name+"'>" +
         "  </div>" +
         "  <div class='form-group'>" +
         "    <label for='lbl-email'>Email</label>" +
@@ -17,7 +17,7 @@ function ModifyUser(name, email, divmod) {
         "  <br />" +
         "  <div class='form-group'>" +
         "    <label for='lbl-newpwd'>New Password</label>" +
-        "    <input type='password' class='form-control' id='txt-newpwd' placeholder='Enter New Password'>" +
+        "    <input type='password' class='form-control' name='txt-newpwd' id='txt-newpwd' placeholder='Enter New Password'>" +
         "  </div>" +
         "  <div class='form-group'>" +
         "    <label for='lbl-retpwd'>Retype New Password</label>" +

@@ -10,10 +10,11 @@ $query->execute(array(":id" => $id));
 $row = $query->fetch(PDO::FETCH_ASSOC);
 
 if (isset($_POST['btn-update'])){
-    $name = $_POST['btn-update'];
+    $name = $_POST['txt-username'];
     $email = $_POST['txt-email'];
-    $password = strip_tags($_POST['txt-pwd']);
-    if ($user->Login($name, $email, $password)){
+    $password = $_POST['txt-newpwd'];
+    $ownpwd = strip_tags($_POST['txt-pwd']);
+    if ($user->Login($row['username'], $row['email'], $ownpwd)){
         $success = "User successfully updated";
     }
     else{
