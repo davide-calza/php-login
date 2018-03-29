@@ -12,13 +12,9 @@ function ModifyUser(name, email, divmod) {
         "  </div>" +
         "  <div class='form-group'>" +
         "    <label for='lbl-email'>Email</label>" +
-        "    <input type='text' class='form-control' id='txt-email' placeholder='Enter Email' value='"+email+"'>" +
+        "    <input type='email' class='form-control' id='txt-email' placeholder='Enter Email' value='"+email+"'>" +
         "  </div>" +
         "  <br />" +
-        "  <div class='form-group'>" +
-        "    <label for='lbl-oldpwd'>Old Password</label>" +
-        "    <input type='password' class='form-control' id='txt-oldpwd' placeholder='Enter Old Password'>" +
-        "  </div>" +
         "  <div class='form-group'>" +
         "    <label for='lbl-newpwd'>New Password</label>" +
         "    <input type='password' class='form-control' id='txt-newpwd' placeholder='Enter New Password'>" +
@@ -26,6 +22,11 @@ function ModifyUser(name, email, divmod) {
         "  <div class='form-group'>" +
         "    <label for='lbl-retpwd'>Retype New Password</label>" +
         "    <input type='password' class='form-control' id='txt-retpwd' placeholder='Retype New Password' onkeyup='CheckNewPasswordRetype(\"txt-newpwd\", \"txt-retpwd\")'>" +
+        "  </div>" +
+        "  <br />" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-oldpwd'>Password</label>" +
+        "    <input type='password' class='form-control' id='txt-pwd' placeholder='Enter your current Password'>" +
         "  </div>" +
         "  <div id='div-modify-user-btns'> " +
         "    <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' name='btn-update'>Update User</button>" +
@@ -51,8 +52,4 @@ function CancelButton(id){
     $("#"+id).html(" ");
     $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
-}
-
-function UpdateButton(){
-
 }

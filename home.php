@@ -36,7 +36,7 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
     <a class="navbar-brand" href="home.php">PHP Login</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon" />
+        <span class="navbar-toggler-icon" ></span>
     </button>
     <!--Collapse buttons-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -68,11 +68,10 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
             <?php
             Script::GenerateList($user);
             ?>
+            <button type="button" class="btn btn-info btn-lg" id="btn-adduser">+</button>
         </div>
     </div>
-    <div class="col-md-7" id="div-modify-user">
-
-    </div>
+    <div class="col-md-7" id="div-modify-user"></div>
 </div>
 </body>
 </html>

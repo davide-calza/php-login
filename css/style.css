@@ -111,3 +111,13 @@ h1{
     bottom: 0;
     margin-bottom: 20px;
 }
+
+#alert-mod-user-error{
+    display: none;
+}
+
+#btn-adduser{
+    height: 75px;
+    font-weight: bolder;
+    font-size: 30px;
+}
