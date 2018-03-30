@@ -26,6 +26,7 @@ if (isset($_POST['btn-login'])) {
     <meta charset="UTF-8">
     <title>Sign in</title>
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <link rel="icon" href="cont/favicon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.js"

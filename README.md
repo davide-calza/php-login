@@ -9,7 +9,7 @@ Password are encrypted with salty systems.
 * MySQL PDO extension 
 
 ## To manage the database
-You can find the database dump in **php-login-db.sql**  \
+You can find the database dump in **cont/php-login-db.sql**  \
 Edit **database.php** before starting the server. 
 
 *Example:*
