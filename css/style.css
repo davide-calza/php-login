@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-html, body, .login-form, .body-container, .bp-form{
+html, body, .login-form, .body-container, .bp-form {
     background: #263238;
 }
 
@@ -9,7 +9,7 @@ html, body, .login-form, .body-container, .bp-form{
     max-width: 500px;
     padding: 19px 29px 29px;
     margin: 0 auto;
-    //margin-top:90px;
+/ / margin-top: 90 px;
     background-color: #fff;
     margin-right: 0;
 
@@ -17,18 +17,19 @@ html, body, .login-form, .body-container, .bp-form{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 
-    font-family:Tahoma, Geneva, sans-serif;
-    color:#990000;
-    font-weight:lighter;
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #990000;
+    font-weight: lighter;
 }
 
-.form-login .form-login-header{
-    color:#00A2D1;
+.form-login .form-login-header {
+    color: #00A2D1;
 }
+
 .form-login input[type="text"],
 .form-login input[type="password"],
 .form-login input[type="email"] {
@@ -37,61 +38,67 @@ html, body, .login-form, .body-container, .bp-form{
     padding: 7px 9px;
 }
 
-.login-form, .body-container
-{
-    //border:solid red 1px;
-    margin-top:220px;
+.login-form, .body-container {
+/ / border: solid red 1 px;
+    margin-top: 220px;
 }
-.navbar-brand{
+
+.navbar-brand {
     font-family: "Lucida Handwriting", Roboto;
 }
-#btn-submit{
-    height:45px;
+
+#btn-submit {
+    height: 45px;
 }
-.h5{
-    font-family:Verdana, Geneva, sans-serif;
+
+.h5 {
+    font-family: Verdana, Geneva, sans-serif;
 }
-h1{
-    font-family:Verdana, Geneva, sans-serif;
+
+h1 {
+    font-family: Verdana, Geneva, sans-serif;
 }
+
 /*******************************/
 
 /*** PHP Show Best Practises ***/
-#btn-showbp{
+#btn-showbp {
     font-size: xx-large;
     width: 100%;
     margin-left: 0;
 }
 
-#btn-bp{
+#btn-bp {
     font-size: xx-large;
     width: 100%;
     margin-left: 0;
     margin-top: 20px;
     display: none;
 }
-#btn-bp:hover{
+
+#btn-bp:hover {
     cursor: default;
 }
 
-#div-bp{
+#div-bp {
     position: absolute;
     margin-top: 6%;
     width: 500px;
     text-align: center;
 }
+
 /*******************************/
 
 /********** home.php ***********/
-#div-users-list{
+#div-users-list {
     margin: 30px;
 }
 
-#home-body{
+#home-body {
     background: #263238;
 }
 
-#form-modify-user{
+#form-modify-user {
     padding: 30px 60px 30px;
     background-color: #fff;
     margin: 30px;
@@ -100,25 +107,26 @@ h1{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 
-    font-family:Roboto, Tahoma, Geneva, sans-serif;
+    font-family: Roboto, Tahoma, Geneva, sans-serif;
     font-size: 1.5em;
 }
 
-#div-modify-user-btns{
+#div-modify-user-btns {
     margin-top: 50px;
 }
 
-#alert-mod-user-error{
+#alert-mod-user-error {
     font-size: 20px;
 }
 
-#btn-adduser{
+#btn-adduser {
     height: 75px;
     font-weight: bolder;
     font-size: 30px;
 }
+
 /*******************************/
