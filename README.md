@@ -1,7 +1,8 @@
 # PHP Login
-A simple login system written in PHP.\
-Once registered and logged, you can add and delete other users, or modify their informations.
+A simple login system written in PHP. <br />
+Once registered and logged, you can add and delete other users, or modify their informations. <br />
 Password are encrypted with salty systems.
+
 ## Prerequisites 
 
 * MySQL
@@ -21,11 +22,12 @@ private $username = "mysql_user";
 private $password = "mysql_password";
 ```
 
-####Technologies
+#### Technologies
 * [PHP 7.2.3](https://secure.php.net)
 * [Bootstrap 4.0.0](https://getbootstrap.com) 
 * [jQuery](https://jquery.com)
 * [jQuery UI](https://jqueryui.com)
 * [Popper](https://popper.js.org)
+
 #### Credits
 * [Flaticon](https://www.flaticon.com/)
