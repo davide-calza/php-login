@@ -9,40 +9,17 @@ Script::RedirectToHome($user);
 
 /** On registration button click */
 if (isset($_POST['btn-signup'])) {
-    $name = strip_tags($_POST['txt-name']);
-    $email = strip_tags($_POST['txt-email']);
-    $password = strip_tags($_POST['txt-password']);
+    $msg='';
+    $name = $_POST['txt-name'];
+    $email = $_POST['txt-email'];
+    $password = $_POST['txt-password'];
+    $retpwd = $_POST['txt-retpwd'];
 
-    if ($name == "") {
-        $error[] = "Enter a username!";
-    } else if ($email == "") {
-        $error[] = "Enter an email address!";
-    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error[] = 'Enter a valid email address!';
-    } else if ($password == "") {
-        $error[] = "Enter a password!";
-    } else if (strlen($password) < 6) {
-        $error[] = "Password must be at least 6 characters!";
-    } else {
-        try {
-            $query = $user->Query("SELECT username, email FROM user WHERE username=:name OR email=:email");
-            $query->execute(array(':name'=>$name, ':email'=>$email));
-            $row=$query->fetch(PDO::FETCH_ASSOC);
-
-            if($row['username']==$name) {
-                $error[] = "Username already taken :(";
-            }
-            else if($row['email']==$email) {
-                $error[] = "Email already taken!";
-            }
-            else {
-                if ($user->Register($name, $email, $password)) {
-                    $user->redirect('register.php?joined');
-                }
-            }
-        } catch (PDOException $e) {
-            $user->Alert($e->getMessage());
-        }
+    if(Script::RegisterUser($user, $name, $email, $password, $retpwd, $msg)){
+        $success = $msg;
+    }
+    else{
+        $error = $msg;
     }
 }
 ?>
@@ -81,14 +58,12 @@ if (isset($_POST['btn-signup'])) {
             <hr/>
             <?php
             if (isset($error)) {
-                foreach ($error as $error) {
-                    ?>
-                    <!--Error alert-->
-                    <div class="alert alert-danger">
-                        <?php echo $error; ?>
-                    </div>
-                    <?php
-                }
+                ?>
+                <!--Error alert-->
+                <div class="alert alert-danger">
+                    <?php echo $error; ?>
+                </div>
+                <?php
             } else if (isset($_GET['joined'])) {
                 ?>
                 <!--Success alert-->
@@ -113,6 +88,10 @@ if (isset($_POST['btn-signup'])) {
                 <br />
                 <!--Password-->
                 <input type="password" class="form-control" name="txt-password" placeholder="Enter Password"/>
+                <div class="clearfix"></div>
+                <hr/>
+                <!--Retype Password-->
+                <input type="password" class="form-control" name="txt-retpwd" placeholder="Retype Password"/>
                 <div class="clearfix"></div>
                 <hr/>
                 <!--Submit button-->

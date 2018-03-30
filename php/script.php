@@ -87,6 +87,27 @@ class Script
         return false;
     }
 
+    /**RegisterUser
+     *
+     * Check if user registration is possible and execute it
+     * @param $session = active session
+     * @param $name = name of the user
+     * @param $email = email of the user
+     * @param $password = password of user
+     * @param $msg = output message (success|failure)
+     * @return bool     = true if successful
+     */
+    public static function RegisterUser($session, $name, $email, $password, $retpwd, &$msg)
+    {
+        if (Script::CheckCredentials($session, $name, $email, $password, $retpwd, $msg)) {
+            if ($session->Register($name, $email, $password)) {
+                $session->redirect('register.php?joined');
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**UpdateUser
      *
      * Check if update is possible and execute it
@@ -100,7 +121,6 @@ class Script
      * @param $retpwd = retyped password
      * @param $msg = output message (success|failure)
      * @return bool     = true if successful
-     * @param $retpwd = retyped password
      */
     public static function UpdateUser($session, $oldname, $oldmail, $ownpwd, $name, $email, $password, $retpwd, &$msg)
     {
@@ -136,7 +156,43 @@ class Script
         return false;
     }
 
+    /**AddUser
+     *
+     * Check if external user registration is possible and execute it
+     * @param $session = active session
+     * @param $name = name of the user
+     * @param $email = email of the user
+     * @param $password = password of user
+     * @param $retpwd = retyped password of user
+     * @param $ownpwd = password of the session user
+     * @param $msg
+     * @return bool
+     */
     public static function AddUser($session, $name, $email, $password, $retpwd, $ownpwd, &$msg)
+    {
+        if (Script::CheckCredentials($session, $name, $email, $password, $retpwd, $msg)) {
+            if ($session->Add($ownpwd, $name, $email, $password)) {
+                $msg = "User successfully added";
+                return true;
+            } else {
+                $msg = "Password incorrect!";
+            }
+        }
+        return false;
+    }
+
+    /**CheckCredentials
+     *
+     * Check user credentials
+     * @param $session  = active session
+     * @param $name     = name of the user
+     * @param $email    = email of the user
+     * @param $password = password of user
+     * @param $retpwd = retyped password of user
+     * @param $msg      = output message (success|failure)
+     * @return bool     = true if successful
+     */
+    private static function CheckCredentials($session, $name, $email, $password, $retpwd, &$msg)
     {
         if ($name == "") {
             $msg = "Enter a username!";
@@ -158,18 +214,10 @@ class Script
                     $msg = "Username already taken :(";
                 } else if ($row['email'] == $email) {
                     $msg = "Email already taken!";
+                } else if ($password <> $retpwd) {
+                    $msg = "Passwords not coincident!";
                 } else {
-                    if($session->Add($ownpwd, $name, $email, $password)){
-                        if ($password <> $retpwd) {
-                            $msg = "Passwords not coincident!";
-                        } else if ($session->Register($name, $email, $password)) {
-                            $msg = "User successfully added";
-                            return true;
-                        }
-                    }
-                    else{
-                        $msg = "Password incorrect!";
-                    }
+                    return true;
                 }
             } catch (PDOException $e) {
                 $msg = $e->getMessage();
