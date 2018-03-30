@@ -4,6 +4,7 @@ html, body, .login-form, .body-container, .bp-form{
     background: #263238;
 }
 
+/********** index.php **********/
 .form-login {
     max-width: 500px;
     padding: 19px 29px 29px;
@@ -53,8 +54,9 @@ html, body, .login-form, .body-container, .bp-form{
 h1{
     font-family:Verdana, Geneva, sans-serif;
 }
+/*******************************/
 
-/*PHP Show Best Practises*/
+/*** PHP Show Best Practises ***/
 #btn-showbp{
     font-size: xx-large;
     width: 100%;
@@ -78,8 +80,9 @@ h1{
     width: 500px;
     text-align: center;
 }
+/*******************************/
 
-/*Home.php*/
+/********** home.php ***********/
 #div-users-list{
     margin: 30px;
 }
@@ -118,3 +121,4 @@ h1{
     font-weight: bolder;
     font-size: 30px;
 }
+/*******************************/
