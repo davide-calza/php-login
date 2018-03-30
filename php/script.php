@@ -147,26 +147,25 @@ class Script
      */
     public static function DeleteUser($session, $name, $email, $password, &$msg)
     {
-        try{
+        try {
             $query = $session->Query("SELECT username, email FROM user WHERE id=:id");
             $query->execute(array(':id' => $_SESSION['user-session']));
             $row = $query->fetch(PDO::FETCH_ASSOC);
             $logout = false;
-            if($name == $row['username']){
+            if ($name == $row['username']) {
                 $logout = true;
             }
 
             if ($session->Unregister($name, $email, $password)) {
                 $msg = "User successfully deleted";
-                if($logout){
+                if ($logout) {
                     $session->Redirect('logout.php?logout=true');
                 }
                 return true;
             } else {
                 $msg = "Incorrect password!";
             }
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             $msg = $e->getMessage();
         }
         return false;
@@ -200,12 +199,12 @@ class Script
     /**CheckCredentials
      *
      * Check user credentials
-     * @param $session  = active session
-     * @param $name     = name of the user
-     * @param $email    = email of the user
+     * @param $session = active session
+     * @param $name = name of the user
+     * @param $email = email of the user
      * @param $password = password of user
      * @param $retpwd = retyped password of user
-     * @param $msg      = output message (success|failure)
+     * @param $msg = output message (success|failure)
      * @return bool     = true if successful
      */
     private static function CheckCredentials($session, $name, $email, $password, $retpwd, &$msg)

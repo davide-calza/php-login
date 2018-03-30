@@ -96,6 +96,13 @@ h1 {
 
 #home-body {
     background: #263238;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+#home-title {
+    font-family: inherit;
+    margin-left: 30px;
 }
 
 #form-modify-user {
