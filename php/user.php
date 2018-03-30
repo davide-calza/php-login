@@ -196,6 +196,32 @@ class User
         return false;
     }
 
+    /**Add
+     *
+     * Execute an external user registration
+     * @param $sessionpwd  = password of the session user
+     * @param $username    = new username of the user
+     * @param $email       = new email of the user
+     * @param $password    = new password of the user
+     * @return bool        = true if successful
+     */
+    public function Add($sessionpwd, $username, $email, $password)
+    {
+        try {
+            if ($this->CheckCredentials($sessionpwd)) {
+                $this->Register($username, $email, $password);
+                return true;
+            } else {
+                throw new Exception("Add user failed");
+            }
+        } catch (PDOException $e) {
+            $this->Alert("\nException on register: " . $e->getMessage());
+        } catch (Exception $e) {
+            $this->Alert("\nException on register: " . $e->getMessage());
+        }
+        return false;
+    }
+
     /**Logout
      *
      * Logout the user from the session

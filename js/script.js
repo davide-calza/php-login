@@ -97,7 +97,7 @@ function AddUser(divmod) {
     "      </div>" +
     "    </div>" +
     "    <div class='col-md-6'>" +
-    "      <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-update' name='btn-update' formmethod='post'>Add User</button>" +
+    "      <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-add' name='btn-add' formmethod='post'>Add User</button>" +
     "      <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
     "    </div>" +
     "  </div>" +

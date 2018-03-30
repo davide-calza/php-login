@@ -23,7 +23,7 @@ if (isset($_POST['btn-update'])){
         $success = $msg;
     }
     else{
-        $error = $msg;
+        $error = 'mod_'.$msg;
     }
 }
 
@@ -37,7 +37,23 @@ if (isset($_POST['btn-delete'])){
         $success = $msg;
     }
     else{
-        $error = $msg;
+        $error = 'mod_'.$msg;
+    }
+}
+
+/** On add button click  */
+if (isset($_POST['btn-add'])){
+    $msg='';
+    $name = $_POST['txt-username'];
+    $email = $_POST['txt-email'];
+    $password = $_POST['txt-newpwd'];
+    $retpwd = $_POST['txt-retpwd'];
+    $ownpwd = strip_tags($_POST['txt-pwd']);
+    if(Script::AddUser($user, $name, $email, $password, $retpwd, $ownpwd, $msg)){
+        $success = $msg;
+    }
+    else{
+        $error = 'add_'.$msg;
     }
 }
 ?>
@@ -113,9 +129,20 @@ if (isset($_POST['btn-delete'])){
     <?php
     /** On Error */
     if(isset($error)){
+        $type = explode('_', $error)[0];
+        $err_msg = explode('_', $error)[1];
+        if($type == 'mod'){
     ?>
-    ModifyUser(<?php echo '"'.$name.'","'.$email.'","div-modify-user"'; ?>);
-    ErrorAlert('form-modify-user', '<?php echo $error ?>', 'txt-pwd');
+            ModifyUser(<?php echo '"' . $name . '","' . $email . '","div-modify-user"'; ?>);
+    <?php
+        }
+        else{
+            ?>
+            AddUser("div-modify-user");
+    <?php
+        }
+    ?>
+    ErrorAlert('form-modify-user', '<?php echo $err_msg ?>', 'txt-pwd');
     <?php
     unset($error);
     }
