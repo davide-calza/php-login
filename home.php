@@ -112,7 +112,10 @@ if (isset($_POST['btn-add'])){
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Success!</strong> <?php echo $success ?>
                 </div>
-                <script>$('#alert-success').show('slide', { direction: 'up' }, 200);</script>
+                <script>
+                    $('#alert-success').show('slide', { direction: 'up' }, 200);
+                    $('#div-modify-user').html("");
+                </script>
             <?php
                 unset($success);
             }
