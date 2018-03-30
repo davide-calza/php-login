@@ -77,17 +77,9 @@ if (isset($_POST['btn-delete'])){
             <li class="nav-item active">
                 <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
             </li>
-            <!--Profile-->
-            <li class="nav-item">
-                <a class="nav-link" href="profile.php">My profile</a>
-            </li>
         </ul>
         <!--Right side buttons-->
         <form class="form-inline my-2 my-lg-0">
-            <!--Search input-->
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <!--Search button-->
-            <button class="btn btn-outline-info my-2 my-sm-0 mr-sm-2" type="submit">Search</button>
             <a class="btn btn-info my-2 my-sm-0" href="logout.php?logout=true">Logout</a>
         </form>
     </div>

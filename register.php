@@ -4,10 +4,10 @@ require_once("php/user.php");
 require_once('php/script.php');
 $user = new User();
 
-//If users are already logged in, they will be redirected to Home
+/** If users are already logged in, they will be redirected to Home */
 Script::RedirectToHome($user);
 
-//Registration check
+/** On registration button click */
 if (isset($_POST['btn-signup'])) {
     $name = strip_tags($_POST['txt-name']);
     $email = strip_tags($_POST['txt-email']);
