@@ -30,7 +30,7 @@ if (isset($_POST['btn-signup'])) {
     <meta charset="UTF-8">
     <title>Sign up</title>
     <link rel="icon" href="cont/favicon.png">
-    l<link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
