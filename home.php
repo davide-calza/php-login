@@ -9,6 +9,7 @@ $query = $user->Query("SELECT * FROM user WHERE id=:id");
 $query->execute(array(":id" => $id));
 $row = $query->fetch(PDO::FETCH_ASSOC);
 
+/** On update button click  */
 if (isset($_POST['btn-update'])){
     $msg='';
     $oldname = explode('_',$_POST['btn-update'])[0];
@@ -26,6 +27,7 @@ if (isset($_POST['btn-update'])){
     }
 }
 
+/** On delete button click  */
 if (isset($_POST['btn-delete'])){
     $msg='';
     $name = explode('_',$_POST['btn-delete'])[0];
@@ -98,6 +100,7 @@ if (isset($_POST['btn-delete'])){
             <?php
             if(isset($success)){
                 ?>
+                <!--Success alert-->
                 <div class="alert alert-success alert-dismissible">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Success!</strong> <?php echo $success ?>
@@ -110,11 +113,13 @@ if (isset($_POST['btn-delete'])){
             <button type="button" class="btn btn-info btn-lg" id="btn-adduser">+</button>
         </div>
     </div>
+    <!--Modify user form-->
     <div class="col-md-7" id="div-modify-user"></div>
 </div>
 
 <script>
     <?php
+    /** On Error */
     if(isset($error)){
     ?>
     ModifyUser(<?php echo '"'.$name.'","'.$email.'","div-modify-user"'; ?>);

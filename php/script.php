@@ -64,6 +64,26 @@ class Script
         }
     }
 
+    /**Login
+     *
+     * Check if login is possible and execute it
+     * @param $session  = active session
+     * @param $name     = name of the user
+     * @param $email    = email of the user
+     * @param $password = password of the session user
+     * @param $msg      = output message (success|failure)
+     * @return bool     = true if successful
+     */
+    public static function LoginUser($session, $name, $email, $password, &$msg){
+        if ($session->Login($name, $email, $password)) {
+            $session->Redirect('home.php');
+            return true;
+        } else {
+            $msg = "Invalid credentials";
+        }
+        return false;
+    }
+
     /**UpdateUser
      *
      * Check if update is possible and execute it

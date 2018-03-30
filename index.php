@@ -4,18 +4,17 @@ require_once('php/user.php');
 require_once('php/script.php');
 $user = new User();
 
-//If the user is already logged in, it will be redirected to the home page
+/** If the user is already logged in, it will be redirected to the home page  */
 Script::RedirectToHome($user);
 
-//Login check
+/** On login button click */
 if (isset($_POST['btn-login'])) {
+    $msg = '';
     $name = strip_tags($_POST['txt-name']);
     $email = strip_tags($_POST['txt-name']);
     $password = strip_tags($_POST['txt-password']);
 
-    if ($user->Login($name, $email, $password)) {
-        $user->Redirect('home.php');
-    } else {
+    if(!Script::LoginUser($user, $name, $email, $password, $msg)){
         $error = "Invalid credentials";
     }
 }

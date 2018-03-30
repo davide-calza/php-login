@@ -1,9 +1,9 @@
-/*
-    ModifyUser
-    Print the modify user form
-    name   = name of the user to modify
-    email  = email of the user ti modify
-    divmod = div to append the form
+/**ModifyUser
+ *
+ * Print the modify user form
+ * name   = name of the user to modify
+ * email  = email of the user ti modify
+ * divmod = div to append the form
 */
 function ModifyUser(name, email, divmod) {
     document.cookie =
@@ -54,11 +54,11 @@ function ModifyUser(name, email, divmod) {
     $('#' + divmod).html(str);
 }
 
-/*
-    CheckNewPasswordRetype
-    Check if two input forms have the same text
-    id1 = id of the first input
-    id2 = id of the second input
+/**CheckNewPasswordRetype
+ *
+ * Check if two input forms have the same text
+ * id1 = id of the first input
+ * id2 = id of the second input
 */
 function CheckNewPasswordRetype(id1, id2) {
     pw1 = $("#" + id1).val();
@@ -75,10 +75,10 @@ function CheckNewPasswordRetype(id1, id2) {
     }
 }
 
-/*
-    CancelButton
-    Manage the "cancel" button action
-    id = id of the button
+/**CancelButton
+ *
+ * Manage the "cancel" button action
+ * id = id of the button
 */
 function CancelButton(id) {
     $("#" + id).html(" ");
@@ -86,12 +86,12 @@ function CancelButton(id) {
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
 }
 
-/*
-    ErrorAlert
-    Show an error alert
-    form_id = id of the form to append the alert
-    msg     = message of the alert
-    txt_id  = id of the password input box to invalid
+/**ErrorAlert
+ *
+ * Show an error alert
+ * form_id = id of the form to append the alert
+ * msg     = message of the alert
+ * txt_id  = id of the password input box to invalid
 */
 function ErrorAlert(form_id, msg, txt_id) {
     str = '<div id="alert-mod-user-error" class="alert alert-danger alert-dismissible fade show" role="alert">' +
