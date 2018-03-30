@@ -27,14 +27,15 @@ if (isset($_POST['btn-update'])){
 }
 
 if (isset($_POST['btn-delete'])){
+    $msg='';
     $name = explode('_',$_POST['btn-delete'])[0];
     $email = explode('_',$_POST['btn-delete'])[1];
     $password = strip_tags($_POST['txt-pwd']);
-    if ($user->Unregister($name, $email, $password)){
-        $success = "User successfully deleted";
+    if(Script::DeleteUser($user, $name, $email, $password,$msg)){
+        $success = $msg;
     }
     else{
-        $error = "Incorrect password!";
+        $error = $msg;
     }
 }
 ?>

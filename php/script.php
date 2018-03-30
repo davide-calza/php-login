@@ -70,13 +70,14 @@ class Script
      * @param $session  = active session
      * @param $oldname  = old name of the user
      * @param $oldmail  = old mail of the user
-     * @param $ownpwd   = old password of the user
+     * @param $ownpwd   = password of session user
      * @param $name     = new name of the user
      * @param $email    = new email of the user
      * @param $password = new password of the user
      * @param $retpwd   = retyped password
      * @param $msg      = output message (success|failure)
      * @return bool     = true if successful
+     * @param $retpwd   = retyped password
      */
     public static function UpdateUser($session, $oldname, $oldmail, $ownpwd, $name, $email, $password, $retpwd, &$msg){
         if($password <> $retpwd){
@@ -84,6 +85,27 @@ class Script
         }
         else if ($session->Update($oldname, $oldmail, $ownpwd, $name, $email, $password)){
             $msg = "User successfully updated";
+            return true;
+        }
+        else{
+            $msg = "Incorrect password!";
+        }
+        return false;
+    }
+
+    /**DeleteUser
+     *
+     * Check if unregistration is possible and execute it
+     * @param $session  = active session
+     * @param $name     = name of the user
+     * @param $email    = email of the user
+     * @param $password = password of the session user
+     * @param $msg      = output message (success|failure)
+     * @return bool     = true if successful
+     */
+    public static function DeleteUser($session, $name, $email, $password, &$msg){
+        if ($session->Unregister($name, $email, $password)){
+            $msg = "User successfully deleted";
             return true;
         }
         else{
