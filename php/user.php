@@ -235,8 +235,7 @@ class User
             if (password_verify($sessionpwd, $row['password'])) {
                 return true;
             }
-        } else {
-            return false;
         }
+        return false;
     }
 }

@@ -1,15 +1,41 @@
 <?php
 
+/**
+ * Class Database
+ * Manage the database
+ */
 class Database
 {
-    public $conn; // Database connection
+    /**Database connection
+     * @var
+     */
+    public $conn;
 
-    private $host = "localhost";    //Database host
-    private $database = "phplogin"; //Database name
-    private $username = "root";     //Database username
-    private $password = "root";     //Database password
+    /**Database host
+     * @var string
+     */
+    private $host = "localhost";
 
-    //Connect to the database with PDO
+    /**Database name
+     * @var string
+     */
+    private $database = "phplogin";
+
+    /**Database username
+     * @var string
+     */
+    private $username = "root";
+
+    /**Database password
+     * @var string
+     */
+    private $password = "root";
+
+    /**Connect
+     *
+     * Connect to the database with PDO
+     * @return null|PDO = returns PDO statement or null if it fails
+     */
     public function Connect()
     {
         $this->conn = null;
