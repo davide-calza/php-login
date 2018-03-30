@@ -2,223 +2,205 @@
 
 require_once('database.php');
 
+/**
+ * Class User
+ * Manage User functions (Login, Logout, CRUD)
+ */
 class User
 {
-    //Database connection
+    /**
+     * @var null|PDO
+     * Database connection
+     */
     private $conn;
 
-    //__construct
-    //  User constructor
-    //  Execute a connection to the database
+    /**__construct
+     *
+     * User constructor
+     * Execute a connection to the database
+     */
     public function __construct()
     {
-        try{
+        try {
             $db = new Database();
             $this->conn = $db->Connect();
-        }
-        catch (PDOException $e){
+        } catch (PDOException $e) {
             $this->Alert("\nException on database connection: " . $e->getMessage());
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             $this->Alert("\nException on database connection: " . $e->getMessage());
         }
     }
 
-    //Redirect
-    //  Redirect the user to a specific page
-    //  $url = given url for the user to be redirected
+    /**Redirect
+     *
+     * Redirect the user to a specific page
+     * @param $url = given url for the user to be redirected
+     */
     public function Redirect($url)
     {
         header("Location: $url");
     }
 
-    //Query
-    //  Execute a query on the database
-    //  $query = query to execute
+    /**Query
+     *
+     * Execute a query on the database
+     * @param $query              = query to execute
+     * @return null|PDOStatement  = return the PDO statement or null if it fails
+     */
     public function Query($query)
     {
-        try{
+        try {
             $q = $this->conn->prepare($query);
-            //echo "\n" . $query;
             return $q;
-        }
-        catch (PDOException $e){
+        } catch (PDOException $e) {
             $this->Alert("\nException on Query execution: " . $e->getMessage());
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             $this->Alert("\nException on Query execution: " . $e->getMessage());
         }
         return null;
     }
 
-    //LoggedIn
-    //  Check if the user is logged in or not
+    /**LoggedIn
+     *
+     * Determine if the user is logged in or not
+     * by checking if session variable user-session is set and not null
+     * @return bool = true if the user is logged in
+     */
     public function LoggedIn()
     {
-        //Check if session variable user-session is set and not null
-        if(isset($_SESSION['user-session'])){
+        if (isset($_SESSION['user-session'])) {
             return true;
         }
         return false;
     }
 
-    //Register
-    //  Execute a user registration
-    //  $username = username of the user
-    //  $email    = email of the user
-    //  $password = password of the user
-    public function Register($username,$email,$password)
+    /**Register
+     *
+     * Execute a user registration
+     * @param $username          = username of the user
+     * @param $email             = email of the user
+     * @param $password          = password of the user
+     * @return null|PDOStatement = return the PDO statement or null if it fails
+     */
+    public function Register($username, $email, $password)
     {
         $q = null;
-        try
-        {
+        try {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $q = $this->Query("INSERT INTO user(username,email,password) VALUES(:username, :email, :password)");
             $q->bindparam(":username", $username);
             $q->bindparam(":email", $email);
             $q->bindparam(":password", $hash);
             $q->execute();
-            //echo "\nRegistration successful";
-        }
-        catch(PDOException $e)
-        {
+        } catch (PDOException $e) {
             $this->Alert("\nExcept on user registration: " . $e->getMessage());
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             $this->Alert("\nException on registration: " . $e->getMessage());
         }
         return $q;
     }
 
-    //Login
-    //  Execute a user login (already registered)
-    //  It is either possible do the login with the username or the email
-    //  $username = username of the user
-    //  $email    = email of the user
-    //  $password = password of the user
-    public function Login($username,$email,$password)
+    /**Login
+     *
+     * Execute a user login (already registered)
+     * It is either possible do the login with the username or the email
+     * @param $username  = username of the user
+     * @param $email     = email of the user
+     * @param $password  = password of the user
+     * @return bool      = true if successful
+     */
+    public function Login($username, $email, $password)
     {
-        try
-        {
+        try {
             $q = $this->Query("SELECT id, username, email, password FROM user WHERE username=:username OR email=:email ");
-            $q->execute(array(':username'=>$username, ':email'=>$email));
-            $row=$q->fetch(PDO::FETCH_ASSOC);
-            if($q->rowCount() == 1)
-            {
-                if(password_verify($password, $row['password']))
-                {
+            $q->execute(array(':username' => $username, ':email' => $email));
+            $row = $q->fetch(PDO::FETCH_ASSOC);
+            if ($q->rowCount() == 1) {
+                if (password_verify($password, $row['password'])) {
                     $_SESSION['user-session'] = $row['id'];
                     //echo "\nLogin successful";
                     return true;
-                }
-                else
-                {
+                } else {
                     throw new Exception("Login failed");
                 }
             }
-        }
-        catch(PDOException $e)
-        {
+        } catch (PDOException $e) {
             $this->Alert("\nException on login: " . $e->getMessage());
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             $this->Alert("\nException on login: " . $e->getMessage());
         }
         return false;
     }
 
-    //Unregister
-    //  Unregister a user
-    //  $username = username of the user
-    //  $email    = email of the user
-    //  $password = password of the user
-    public function Unregister($username,$email,$sessionpwd)
+    /**Unregister
+     *
+     * Unregister a user
+     * @param $username   = username of the user
+     * @param $email      = email of the user
+     * @param $sessionpwd = password of the user
+     * @return bool       = true if successful
+     */
+    public function Unregister($username, $email, $sessionpwd)
     {
-        try
-        {
-            $q = $this->Query("SELECT id, username, email, password FROM user WHERE id=:id ");
-            $q->execute(array(':id'=>$_SESSION['user-session']));
-            $row=$q->fetch(PDO::FETCH_ASSOC);
-            if($q->rowCount() == 1)
-            {
-                if(password_verify($sessionpwd, $row['password']))
-                {
-                    $q = $this->Query("DELETE FROM user WHERE username=:username OR email=:email ");
-                    $q->bindparam(":username", $username);
-                    $q->bindparam(":email", $email);
-                    $q->execute();
-                    //echo "\nUnregistration successful";
-                    return true;
-                }
-                else
-                {
-                    throw new Exception("Unregistration failed");
-                }
+        try {
+            if ($this->CheckCredentials($sessionpwd)) {
+                $q = $this->Query("DELETE FROM user WHERE username=:username OR email=:email ");
+                $q->bindparam(":username", $username);
+                $q->bindparam(":email", $email);
+                $q->execute();
+                return true;
+            } else {
+                throw new Exception("Unregistration failed");
             }
-        }
-        catch(PDOException $e)
-        {
+        } catch (PDOException $e) {
             $this->Alert("\nException on unregistration: " . $e->getMessage());
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             $this->Alert("\nException on unregistration: " . $e->getMessage());
         }
         return false;
     }
 
-    //Update
-    //  Execute a user informations update
-    //  $oldusername = old username of the user
-    //  $oldpassword = old password of the user
-    //  $oldmail     = old email of the user
-    //  $username    = new username of the user
-    //  $email       = new email of the user
-    //  $password    = new password of the user
-    public function Update($oldusername, $oldmail, $sessionpwd, $username, $email, $password){
-        try
-        {
-            $q = $this->Query("SELECT id, username, email, password FROM user WHERE id=:id ");
-            $q->execute(array(':id'=>$_SESSION['user-session']));
-            $row=$q->fetch(PDO::FETCH_ASSOC);
-            if($q->rowCount() == 1)
-            {
-                if(password_verify($sessionpwd, $row['password']))
-                {
-                    $hash = password_hash($password, PASSWORD_DEFAULT);
-                    $q = $this->Query("UPDATE user SET username = :username, email = :email, password = :password WHERE username = :oldusername OR email=:oldmail");
-                    $q->bindparam(":username", $username);
-                    $q->bindparam(":email", $email);
-                    $q->bindparam(":password", $hash);
-                    $q->bindparam(":oldusername", $oldusername);
-                    $q->bindparam(":oldmail", $oldmail);
 
-                    $q->execute();
-                    return true;
-                }
-                else
-                {
-                    throw new Exception("Update failed");
-                }
+    /**Update
+     *
+     * Execute a user informations update
+     * @param $oldusername = old username of the user
+     * @param $oldmail     = old email of the user
+     * @param $sessionpwd  = password of the session user
+     * @param $username    = new username of the user
+     * @param $email       = new email of the user
+     * @param $password    = new password of the user
+     * @return bool        = true if successful
+     */
+    public function Update($oldusername, $oldmail, $sessionpwd, $username, $email, $password)
+    {
+        try {
+            if ($this->CheckCredentials($sessionpwd)) {
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $q = $this->Query("UPDATE user SET username = :username, email = :email, password = :password WHERE username = :oldusername OR email=:oldmail");
+                $q->bindparam(":username", $username);
+                $q->bindparam(":email", $email);
+                $q->bindparam(":password", $hash);
+                $q->bindparam(":oldusername", $oldusername);
+                $q->bindparam(":oldmail", $oldmail);
+                $q->execute();
+                return true;
+            } else {
+                throw new Exception("Update failed");
             }
-        }
-        catch(PDOException $e)
-        {
+        } catch (PDOException $e) {
             $this->Alert("\nException on update: " . $e->getMessage());
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             $this->Alert("\nException on update: " . $e->getMessage());
         }
         return false;
     }
 
-    //Logout
-    //  Logout the user from the session
+    /**Logout
+     *
+     * Logout the user from the session
+     * @return bool = true if successful
+     */
     public function Logout()
     {
         session_destroy();
@@ -226,12 +208,35 @@ class User
         return true;
     }
 
-    //Alert
-    //  Show a JavaScript alert
-    //  $msg = message to display
-    public function Alert($msg){
+    /**Alert
+     *
+     * Show a JavaScript alert
+     * @param $msg = message to display
+     */
+    public function Alert($msg)
+    {
         echo '<script language="javascript">';
-        echo 'alert("'. $msg . '")';
+        echo 'alert("' . $msg . '")';
         echo '</script>';
+    }
+
+    /**CheckCredentials
+     *
+     * Check if the password is coincident with session user's password
+     * @param $sessionpwd = password of the session user
+     * @return bool       = true if successful
+     */
+    private function CheckCredentials($sessionpwd)
+    {
+        $q = $this->Query("SELECT id, username, email, password FROM user WHERE id=:id ");
+        $q->execute(array(':id' => $_SESSION['user-session']));
+        $row = $q->fetch(PDO::FETCH_ASSOC);
+        if ($q->rowCount() == 1) {
+            if (password_verify($sessionpwd, $row['password'])) {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 }
