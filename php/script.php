@@ -147,11 +147,27 @@ class Script
      */
     public static function DeleteUser($session, $name, $email, $password, &$msg)
     {
-        if ($session->Unregister($name, $email, $password)) {
-            $msg = "User successfully deleted";
-            return true;
-        } else {
-            $msg = "Incorrect password!";
+        try{
+            $query = $session->Query("SELECT username, email FROM user WHERE id=:id");
+            $query->execute(array(':id' => $_SESSION['user-session']));
+            $row = $query->fetch(PDO::FETCH_ASSOC);
+            $logout = false;
+            if($name == $row['username']){
+                $logout = true;
+            }
+
+            if ($session->Unregister($name, $email, $password)) {
+                $msg = "User successfully deleted";
+                if($logout){
+                    $session->Redirect('logout.php?logout=true');
+                }
+                return true;
+            } else {
+                $msg = "Incorrect password!";
+            }
+        }
+        catch (PDOException $e) {
+            $msg = $e->getMessage();
         }
         return false;
     }
