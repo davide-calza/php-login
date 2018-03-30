@@ -74,6 +74,9 @@ if (isset($_POST['btn-add'])){
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
     <script src="js/script.js" type="text/javascript"></script>
 </head>
 
@@ -105,16 +108,17 @@ if (isset($_POST['btn-add'])){
             if(isset($success)){
                 ?>
                 <!--Success alert-->
-                <div class="alert alert-success alert-dismissible">
+                <div class="alert alert-success alert-dismissible" id="alert-success">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong>Success!</strong> <?php echo $success ?>
                 </div>
+                <script>$('#alert-success').show('slide', { direction: 'up' }, 200);</script>
             <?php
                 unset($success);
             }
             Script::GenerateList($user, $row['username']);
             ?>
-            <button type="button" class="btn btn-info btn-lg" id="btn-adduser" onclick="AddUser('div-modify-user')">+</button>
+            <button type="button" class="btn btn-info btn-lg" id="btn-adduser" onclick="AddUser('div-modify-user', false)">+</button>
         </div>
     </div>
     <!--Modify user form-->
@@ -129,12 +133,12 @@ if (isset($_POST['btn-add'])){
         $err_msg = explode('_', $error)[1];
         if($type == 'mod'){
     ?>
-            ModifyUser(<?php echo '"' . $name . '","' . $email . '","div-modify-user"'; ?>);
+            ModifyUser(<?php echo '"' . $name . '","' . $email . '","div-modify-user", true'; ?>);
     <?php
         }
         else{
             ?>
-            AddUser("div-modify-user");
+            AddUser("div-modify-user", true);
     <?php
         }
     ?>

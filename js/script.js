@@ -5,7 +5,7 @@
  * email  = email of the user ti modify
  * divmod = div to append the form
 */
-function ModifyUser(name, email, divmod) {
+function ModifyUser(name, email, divmod, err) {
     $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
     $('.badge-light').removeClass('badge-light').addClass('badge-info');
@@ -13,7 +13,7 @@ function ModifyUser(name, email, divmod) {
     $('#btn-' + name).removeClass('btn-outline-info').addClass('btn-outline-light');
     $('#badge-' + name).removeClass('badge-info').addClass('badge-light');
 
-    const str =
+    var str =
         "<form>" +
         "<div id='div-modify-user-title' class='card-header'><h2><strong>Modify User</strong></h2></div>" +
         "<div id='form-modify-user'>"+
@@ -53,7 +53,16 @@ function ModifyUser(name, email, divmod) {
         "</div>"+
         "</form>";
 
-    $('#' + divmod).html(str);
+    if(err){
+        $('#' + divmod).html(str).hide().show();
+    }
+    else if($('#' + divmod).css('display') == 'none' || $('#' + divmod).html() == ""){
+
+        $('#' + divmod).html(str).hide().show('slide', { direction: 'right' }, 200);
+    }
+    else{
+        $('#' + divmod).html(str).hide(200).show(200);
+    }
 }
 
 /**Add user
@@ -61,50 +70,59 @@ function ModifyUser(name, email, divmod) {
  * Print the add user form
  * divmod = div to append the form
  */
-function AddUser(divmod) {
+function AddUser(divmod, err) {
     $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
     $('.badge-light').removeClass('badge-light').addClass('badge-info');
 
     str = "<form>" +
-    "<div id='div-modify-user-title' class='card-header'><h2><strong>Add User</strong></h2></div>" +
-    "<div id='form-modify-user'>"+
-    "  <div class='form-group'>" +
-    "    <label for='lbl-username'>Username</label>" +
-    "    <input type='text' class='form-control' name='txt-username' id='txt-username' placeholder='Enter Username'>" +
-    "  </div>" +
-    "  <div class='form-group'>" +
-    "    <label for='lbl-email'>Email</label>" +
-    "    <input type='email' class='form-control' id='txt-email' name='txt-email' placeholder='Enter Email'>" +
-    "  </div>" +
-    "  <br />" +
-    "  <div class='form-group'>" +
-    "    <label for='lbl-newpwd'>Password</label>" +
-    "    <input type='password' class='form-control' name='txt-newpwd' id='txt-newpwd' placeholder='Enter Password'>" +
-    "  </div>" +
-    "  <div class='form-group'>" +
-    "    <label for='lbl-retpwd'>Retype Password</label>" +
-    "    <input type='password' class='form-control' name='txt-retpwd' id='txt-retpwd' placeholder='Retype Password' onkeyup='CheckNewPasswordRetype(\"txt-newpwd\", \"txt-retpwd\")'>" +
-    "  </div>" +
-    "  <br />" +
-    "  <div class='row' id='div-modify-user-btns'> " +
-    "    <div class='col-md-6'>" +
-    "      <div class='input-group mb-3'>" +
-    "         <div class='input-group-prepend'>" +
-    "             <span class='input-group-text' id='basic-addon1'>Password</span>" +
-    "         </div>" +
-    "         <input type='password' class='form-control' name='txt-pwd' id='txt-pwd' aria-label='Password' aria-describedby='basic-addon1' placeholder='Enter your current Password'>" +
-    "      </div>" +
-    "    </div>" +
-    "    <div class='col-md-6'>" +
-    "      <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-add' name='btn-add' formmethod='post'>Add User</button>" +
-    "      <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
-    "    </div>" +
-    "  </div>" +
-    "</div>"+
-    "</form>";
+        "<div id='div-modify-user-title' class='card-header'><h2><strong>Add User</strong></h2></div>" +
+        "<div id='form-modify-user'>" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-username'>Username</label>" +
+        "    <input type='text' class='form-control' name='txt-username' id='txt-username' placeholder='Enter Username'>" +
+        "  </div>" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-email'>Email</label>" +
+        "    <input type='email' class='form-control' id='txt-email' name='txt-email' placeholder='Enter Email'>" +
+        "  </div>" +
+        "  <br />" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-newpwd'>Password</label>" +
+        "    <input type='password' class='form-control' name='txt-newpwd' id='txt-newpwd' placeholder='Enter Password'>" +
+        "  </div>" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-retpwd'>Retype Password</label>" +
+        "    <input type='password' class='form-control' name='txt-retpwd' id='txt-retpwd' placeholder='Retype Password' onkeyup='CheckNewPasswordRetype(\"txt-newpwd\", \"txt-retpwd\")'>" +
+        "  </div>" +
+        "  <br />" +
+        "  <div class='row' id='div-modify-user-btns'> " +
+        "    <div class='col-md-6'>" +
+        "      <div class='input-group mb-3'>" +
+        "         <div class='input-group-prepend'>" +
+        "             <span class='input-group-text' id='basic-addon1'>Password</span>" +
+        "         </div>" +
+        "         <input type='password' class='form-control' name='txt-pwd' id='txt-pwd' aria-label='Password' aria-describedby='basic-addon1' placeholder='Enter your current Password'>" +
+        "      </div>" +
+        "    </div>" +
+        "    <div class='col-md-6'>" +
+        "      <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-add' name='btn-add' formmethod='post'>Add User</button>" +
+        "      <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
+        "    </div>" +
+        "  </div>" +
+        "</div>" +
+        "</form>";
 
-    $('#' + divmod).html(str);
+    if (err) {
+        $('#' + divmod).html(str).hide().show();
+    }
+    else if ($('#' + divmod).css('display') == 'none' || $('#' + divmod).html() == "") {
+
+        $('#' + divmod).html(str).hide().show('slide', {direction: 'right'}, 200);
+    }
+    else {
+        $('#' + divmod).html(str).hide(200).show(200);
+    }
 }
 
 /**CheckNewPasswordRetype
@@ -134,7 +152,7 @@ function CheckNewPasswordRetype(id1, id2) {
  * id = id of the button
 */
 function CancelButton(id) {
-    $("#" + id).html(" ");
+    $('#' + id).hide('slide', { direction: 'right' }, 200);
     $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
 }
@@ -147,6 +165,7 @@ function CancelButton(id) {
  * txt_id  = id of the password input box to invalid
 */
 function ErrorAlert(form_id, msg, txt_id) {
+    $('#alert-mod-user-error').hide();
     str = '<div id="alert-mod-user-error" class="alert alert-danger alert-dismissible fade show" role="alert">' +
         '  <strong>Error!</strong> ' + msg +
         '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
@@ -155,4 +174,5 @@ function ErrorAlert(form_id, msg, txt_id) {
         '</div>';
     $('#' + form_id).prepend(str);
     $('#' + txt_id).addClass("is-invalid");
+    $('#alert-mod-user-error').show('slide', { direction: 'up' }, 200);
 }
