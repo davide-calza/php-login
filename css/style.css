@@ -101,12 +101,16 @@ h1 {
 #form-modify-user {
     padding: 30px 60px 30px;
     background-color: #fff;
-    margin: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
 
     border: 1px solid #e5e5e5;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
@@ -117,6 +121,15 @@ h1 {
 
 #div-modify-user-btns {
     margin-top: 50px;
+}
+
+#div-modify-user-title {
+    padding: 25px 60px 16px;
+    margin-top: 30px;
+    background: #17a3b8;
+    color: #ffffff;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 #alert-mod-user-error {

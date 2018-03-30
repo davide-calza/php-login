@@ -6,8 +6,7 @@
  * divmod = div to append the form
 */
 function ModifyUser(name, email, divmod) {
-    document.cookie =
-        $(".active").removeClass('active');
+    $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
     $('.badge-light').removeClass('badge-light').addClass('badge-info');
     $('#item-' + name).addClass('active');
@@ -15,7 +14,9 @@ function ModifyUser(name, email, divmod) {
     $('#badge-' + name).removeClass('badge-info').addClass('badge-light');
 
     const str =
-        "<form id='form-modify-user'>" +
+        "<form>" +
+        "<div id='div-modify-user-title' class='card-header'><h2><strong>Modify User</strong></h2></div>" +
+        "<div id='form-modify-user'>"+
         "  <div class='form-group'>" +
         "    <label for='lbl-username'>Username</label>" +
         "    <input type='text' class='form-control' name='txt-username' id='txt-username' placeholder='Enter Username' value='" + name + "'>" +
@@ -46,6 +47,56 @@ function ModifyUser(name, email, divmod) {
         "    <div class='col-md-6'>" +
         "      <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-update' name='btn-update' value='" + name + "_" + email + "' formmethod='post'>Update User</button>" +
         "      <button type='submit' class='btn btn-outline-danger my-3 my-sm-0 mr-sm-3' id='btn-delete' name='btn-delete' value='" + name + "_" + email + "' formmethod='post'>Delete User</button>" +
+        "      <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
+        "    </div>" +
+        "  </div>" +
+        "</div>"+
+        "</form>";
+
+    $('#' + divmod).html(str);
+}
+
+/**Add user
+ *
+ * Print the add user form
+ * divmod = div to append the form
+ */
+function AddUser(divmod) {
+    $(".active").removeClass('active');
+    $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
+    $('.badge-light').removeClass('badge-light').addClass('badge-info');
+
+    const str =
+        "<form id='form-modify-user'>" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-username'>Username</label>" +
+        "    <input type='text' class='form-control' name='txt-username' id='txt-username' placeholder='Enter Username' value=''>" +
+        "  </div>" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-email'>Email</label>" +
+        "    <input type='email' class='form-control' id='txt-email' name='txt-email' placeholder='Enter Email' value=''>" +
+        "  </div>" +
+        "  <br />" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-newpwd'>Password</label>" +
+        "    <input type='password' class='form-control' name='txt-newpwd' id='txt-newpwd' placeholder='Enter Password'>" +
+        "  </div>" +
+        "  <div class='form-group'>" +
+        "    <label for='lbl-retpwd'>Retype Password</label>" +
+        "    <input type='password' class='form-control' name='txt-retpwd' id='txt-retpwd' placeholder='Retype Password' onkeyup='CheckNewPasswordRetype(\"txt-newpwd\", \"txt-retpwd\")'>" +
+        "  </div>" +
+        "  <br />" +
+        "  <div class='row' id='div-modify-user-btns'> " +
+        "    <div class='col-md-6'>" +
+        "      <div class='input-group mb-3'>" +
+        "         <div class='input-group-prepend'>" +
+        "             <span class='input-group-text' id='basic-addon1'>Password</span>" +
+        "         </div>" +
+        "         <input type='password' class='form-control' name='txt-pwd' id='txt-pwd' aria-label='Password' aria-describedby='basic-addon1' placeholder='Enter your current Password'>" +
+        "      </div>" +
+        "    </div>" +
+        "    <div class='col-md-6'>" +
+        "      <button type='submit' class='btn btn-outline-success my-3 my-sm-0 mr-sm-3' id='btn-update' name='btn-update' value='' formmethod='post'>Add User</button>" +
         "      <button type='button' class='btn btn-outline-info' name='btn-cancel' onclick='CancelButton(\"" + divmod + "\")'>Cancel</button>" +
         "    </div>" +
         "  </div>" +

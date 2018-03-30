@@ -102,7 +102,7 @@ if (isset($_POST['btn-delete'])){
             }
             Script::GenerateList($user, $row['username']);
             ?>
-            <button type="button" class="btn btn-info btn-lg" id="btn-adduser">+</button>
+            <button type="button" class="btn btn-info btn-lg" id="btn-adduser" onclick="AddUser('div-modify-user')">+</button>
         </div>
     </div>
     <!--Modify user form-->
