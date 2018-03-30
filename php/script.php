@@ -124,13 +124,13 @@ class Script
      */
     public static function UpdateUser($session, $oldname, $oldmail, $ownpwd, $name, $email, $password, $retpwd, &$msg)
     {
-        if ($password <> $retpwd) {
-            $msg = "Passwords not coincident!";
-        } else if ($session->Update($oldname, $oldmail, $ownpwd, $name, $email, $password)) {
-            $msg = "User successfully updated";
-            return true;
-        } else {
-            $msg = "Incorrect password!";
+        if (Script::CheckCredentials($session, $name, $email, $password, $retpwd, $msg) || $msg = 'Enter a password!') {
+            if ($session->Update($oldname, $oldmail, $ownpwd, $name, $email, $password)) {
+                $msg = "User successfully updated";
+                return true;
+            } else {
+                $msg = "Incorrect password!";
+            }
         }
         return false;
     }

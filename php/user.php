@@ -176,11 +176,16 @@ class User
     {
         try {
             if ($this->CheckCredentials($sessionpwd)) {
-                $hash = password_hash($password, PASSWORD_DEFAULT);
-                $q = $this->Query("UPDATE user SET username = :username, email = :email, password = :password WHERE username = :oldusername OR email=:oldmail");
+                if($password == "" || $password == null){
+                    $q = $this->Query("UPDATE user SET username = :username, email = :email WHERE username = :oldusername OR email=:oldmail");
+                }
+                else{
+                    $hash = password_hash($password, PASSWORD_DEFAULT);
+                    $q = $this->Query("UPDATE user SET username = :username, email = :email, password = :password WHERE username = :oldusername OR email=:oldmail");
+                    $q->bindparam(":password", $hash);
+                }
                 $q->bindparam(":username", $username);
                 $q->bindparam(":email", $email);
-                $q->bindparam(":password", $hash);
                 $q->bindparam(":oldusername", $oldusername);
                 $q->bindparam(":oldmail", $oldmail);
                 $q->execute();
