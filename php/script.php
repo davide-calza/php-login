@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * Class Script
+ * Manage generic php scripts
+ */
 class Script
 {
-    //GenerateList
-    //  Display a list of registered users
-    //  $db = active session
+
+    /**GenerateList
+     *
+     * Display a list of registered users
+     * @param $db   = active session
+     * @param $name = name of the session user
+     */
     public static function GenerateList($db, $name){
         $users = $db->Query('SELECT username, email, joining FROM user ORDER BY joining DESC');
         $users->execute();
@@ -34,18 +42,22 @@ class Script
         }
     }
 
-    //RedirectToLogin
-    //  Redirect the user to the Login page
-    //  $session = active session
+    /**RedirectToLogin
+     *
+     * Redirect the user to the Login page
+     * @param $session = active session
+     */
     public static function RedirectToLogin($session){
         if(!$session->LoggedIn()) {
             $session->Redirect('index.php');
         }
     }
 
-    //RedirectToHome
-    //  Redirect the user to the Home page
-    //  $session = active session
+    /**RedirectToHome
+     *
+     * Redirect the user to the Home page
+     * @param $session = active session
+     */
     public static function RedirectToHome($session){
         if($session->LoggedIn()) {
             $session->Redirect('home.php');
