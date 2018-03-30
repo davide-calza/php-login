@@ -63,4 +63,32 @@ class Script
             $session->Redirect('home.php');
         }
     }
+
+    /**UpdateUser
+     *
+     * Check if update is possible and execute it
+     * @param $session  = active session
+     * @param $oldname  = old name of the user
+     * @param $oldmail  = old mail of the user
+     * @param $ownpwd   = old password of the user
+     * @param $name     = new name of the user
+     * @param $email    = new email of the user
+     * @param $password = new password of the user
+     * @param $retpwd   = retyped password
+     * @param $msg      = output message (success|failure)
+     * @return bool     = true if successful
+     */
+    public static function UpdateUser($session, $oldname, $oldmail, $ownpwd, $name, $email, $password, $retpwd, &$msg){
+        if($password <> $retpwd){
+            $msg = "Passwords not coincident!";
+        }
+        else if ($session->Update($oldname, $oldmail, $ownpwd, $name, $email, $password)){
+            $msg = "User successfully updated";
+            return true;
+        }
+        else{
+            $msg = "Incorrect password!";
+        }
+        return false;
+    }
 }

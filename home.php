@@ -10,6 +10,7 @@ $query->execute(array(":id" => $id));
 $row = $query->fetch(PDO::FETCH_ASSOC);
 
 if (isset($_POST['btn-update'])){
+    $msg='';
     $oldname = explode('_',$_POST['btn-update'])[0];
     $oldmail = explode('_',$_POST['btn-update'])[1];
     $name = $_POST['txt-username'];
@@ -17,14 +18,11 @@ if (isset($_POST['btn-update'])){
     $password = $_POST['txt-newpwd'];
     $retpwd = $_POST['txt-retpwd'];
     $ownpwd = strip_tags($_POST['txt-pwd']);
-    if($password <> $retpwd){
-        $error = "Passwords not coincident!";
-    }
-    else if ($user->Update($oldname, $oldmail, $ownpwd, $name, $email, $password)){
-        $success = "User successfully updated";
+    if(Script::UpdateUser($user, $oldname, $oldmail, $ownpwd, $name, $email, $password, $retpwd, $msg)){
+        $success = $msg;
     }
     else{
-        $error = "Incorrect password!";
+        $error = $msg;
     }
 }
 
