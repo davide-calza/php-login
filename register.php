@@ -40,6 +40,7 @@ if (isset($_POST['btn-signup'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="js/script.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="login-form">
@@ -87,11 +88,11 @@ if (isset($_POST['btn-signup'])) {
                        } ?>"/>
                 <br />
                 <!--Password-->
-                <input type="password" class="form-control" name="txt-password" placeholder="Enter Password"/>
+                <input type="password" class="form-control" id="txt-password" name="txt-password" placeholder="Enter Password"/>
                 <div class="clearfix"></div>
                 <hr/>
                 <!--Retype Password-->
-                <input type="password" class="form-control" name="txt-retpwd" placeholder="Retype Password"/>
+                <input type="password" class="form-control" id="txt-retpwd" name="txt-retpwd" onkeyup="CheckNewPasswordRetype('txt-password', 'txt-retpwd')" placeholder="Retype Password"/>
                 <div class="clearfix"></div>
                 <hr/>
                 <!--Submit button-->
