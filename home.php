@@ -36,7 +36,9 @@ if (isset($_POST['btn-delete'])){
     $email = explode('_',$_POST['btn-delete'])[1];
     $password = strip_tags($_POST['txt-pwd']);
     if(Script::DeleteUser($user, $name, $email, $password,$msg)){
-        $user->Redirect('home.php?deleted');
+        if($msg<>'logout') {
+            $user->Redirect('home.php?deleted');
+        }
     }
     else{
         $user->Redirect('home.php?err=del_'.$msg);

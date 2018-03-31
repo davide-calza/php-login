@@ -159,6 +159,7 @@ class Script
             if ($session->Unregister($name, $email, $password)) {
                 $msg = "User successfully deleted";
                 if ($logout) {
+                    $msg = "logout";
                     $session->Redirect('logout.php?logout=true');
                 }
                 return true;
