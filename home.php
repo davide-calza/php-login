@@ -23,7 +23,8 @@ if (isset($_POST['btn-update'])){
         $user->Redirect('home.php?updated');
     }
     else{
-        $user->Redirect('home.php?err=mod_'.$msg);
+        $user->Redirect('home.php?err');
+        $_SESSION['err'] = 'mod_'.$msg;
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $name;
     }
@@ -41,7 +42,8 @@ if (isset($_POST['btn-delete'])){
         }
     }
     else{
-        $user->Redirect('home.php?err=del_'.$msg);
+        $user->Redirect('home.php?err');
+        $_SESSION['err'] = 'del_'.$msg;
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $name;
     }
@@ -59,7 +61,8 @@ if (isset($_POST['btn-add'])){
         $user->Redirect('home.php?joined');
     }
     else{
-        $user->Redirect('home.php?err=add_'.$msg);
+        $user->Redirect('home.php?err');
+        $_SESSION['err'] = 'add_'.$msg;
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $name;
     }
@@ -75,7 +78,7 @@ if(isset($_GET['updated'])){
     $success = "User successfully updated";
 }
 if(isset($_GET['err'])){
-    $error = $_GET['err'];
+    $error = $_SESSION['err'];
     $name= $_SESSION['name'];
     $email= $_SESSION['email'];
 }
