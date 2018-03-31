@@ -13,6 +13,7 @@ function ModifyUser(name, email, divmod, err) {
     $('#item-' + name).addClass('active');
     $('#btn-' + name).removeClass('btn-outline-info').addClass('btn-outline-light');
     $('#badge-' + name).removeClass('badge-info').addClass('badge-light');
+    $('html, body').animate({scrollTop:0}, 'fast');
 
     str = "<form>" +
         "<div id='div-modify-user-title' class='card-header'><h2><strong>Modify User</strong></h2></div>" +
@@ -75,6 +76,7 @@ function AddUser(divmod, err) {
     $(".active").removeClass('active');
     $('.btn-outline-light').removeClass('btn-outline-light').addClass('btn-outline-info');
     $('.badge-light').removeClass('badge-light').addClass('badge-info');
+    $('html, body').animate({scrollTop:0}, 'fast');
 
     str = "<form>" +
         "<div id='div-modify-user-title' class='card-header'><h2><strong>Add User</strong></h2></div>" +
