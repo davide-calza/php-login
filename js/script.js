@@ -4,6 +4,7 @@
  * name   = name of the user to modify
  * email  = email of the user ti modify
  * divmod = div to append the form
+ * err    = check if an error occurred
 */
 function ModifyUser(name, email, divmod, err) {
     $(".active").removeClass('active');
@@ -13,8 +14,7 @@ function ModifyUser(name, email, divmod, err) {
     $('#btn-' + name).removeClass('btn-outline-info').addClass('btn-outline-light');
     $('#badge-' + name).removeClass('badge-info').addClass('badge-light');
 
-    var str =
-        "<form>" +
+    str = "<form>" +
         "<div id='div-modify-user-title' class='card-header'><h2><strong>Modify User</strong></h2></div>" +
         "<div id='form-modify-user'>"+
         "  <div class='form-group'>" +
@@ -69,6 +69,7 @@ function ModifyUser(name, email, divmod, err) {
  *
  * Print the add user form
  * divmod = div to append the form
+ * err    = check if an error occurred
  */
 function AddUser(divmod, err) {
     $(".active").removeClass('active');

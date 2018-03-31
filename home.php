@@ -20,10 +20,10 @@ if (isset($_POST['btn-update'])){
     $retpwd = $_POST['txt-retpwd'];
     $ownpwd = strip_tags($_POST['txt-pwd']);
     if(Script::UpdateUser($user, $oldname, $oldmail, $ownpwd, $name, $email, $password, $retpwd, $msg)){
-        $success = $msg;
+        $user->Redirect('home.php?updated');
     }
     else{
-        $error = 'mod_'.$msg;
+        $user->Redirect('home.php?err=mod_'.$msg);
     }
 }
 
@@ -34,10 +34,10 @@ if (isset($_POST['btn-delete'])){
     $email = explode('_',$_POST['btn-delete'])[1];
     $password = strip_tags($_POST['txt-pwd']);
     if(Script::DeleteUser($user, $name, $email, $password,$msg)){
-        $success = $msg;
+        $user->Redirect('home.php?deleted');
     }
     else{
-        $error = 'mod_'.$msg;
+        $user->Redirect('home.php?err=del_'.$msg);
     }
 }
 
@@ -50,11 +50,24 @@ if (isset($_POST['btn-add'])){
     $retpwd = $_POST['txt-retpwd'];
     $ownpwd = strip_tags($_POST['txt-pwd']);
     if(Script::AddUser($user, $name, $email, $password, $retpwd, $ownpwd, $msg)){
-        $success = $msg;
+        $user->Redirect('home.php?joined');
     }
     else{
-        $error = 'add_'.$msg;
+        $user->Redirect('home.php?err=add_'.$msg);
     }
+}
+
+if(isset($_GET['joined'])){
+    $success = "User successfully registered";
+}
+if(isset($_GET['deleted'])){
+    $success = "User successfully deleted";
+}
+if(isset($_GET['updated'])){
+    $success = "User successfully updated";
+}
+if(isset($_GET['err'])){
+    $error = $_GET['err'];
 }
 ?>
 
@@ -104,22 +117,26 @@ if (isset($_POST['btn-add'])){
 <div class="row" id="home-body">
     <!--Users list-->
     <div class="col-md-5">
+        <?php
+        if(isset($success)){
+            ?>
+            <!--Success alert-->
+            <div class="alert alert-success alert-dismissible" id="alert-success">
+                <a href="home.php" class="close" data-dismiss="alert" aria-label="close" id="alert-success-close">&times;</a>
+                <strong>Success!</strong> <?php echo $success ?>
+            </div>
+            <script>
+                $('#alert-success').fadeTo(3000, 500).slideUp(500, function(){
+                    $('#alert-success').slideUp(500);
+                });
+                $('#div-modify-user').html("");
+            </script>
+            <?php
+            unset($success);
+        }
+        ?>
         <div class="list-group" id="div-users-list">
             <?php
-            if(isset($success)){
-                ?>
-                <!--Success alert-->
-                <div class="alert alert-success alert-dismissible" id="alert-success">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Success!</strong> <?php echo $success ?>
-                </div>
-                <script>
-                    $('#alert-success').show('slide', { direction: 'up' }, 200);
-                    $('#div-modify-user').html("");
-                </script>
-            <?php
-                unset($success);
-            }
             Script::GenerateList($user, $row['username']);
             ?>
             <button type="button" class="btn btn-info btn-lg" id="btn-adduser" onclick="AddUser('div-modify-user', false)">+</button>
@@ -135,7 +152,7 @@ if (isset($_POST['btn-add'])){
     if(isset($error)){
         $type = explode('_', $error)[0];
         $err_msg = explode('_', $error)[1];
-        if($type == 'mod'){
+        if($type == 'mod' || $type =='del'){
     ?>
             ModifyUser(<?php echo '"' . $name . '","' . $email . '","div-modify-user", true'; ?>);
     <?php

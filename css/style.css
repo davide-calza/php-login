@@ -134,6 +134,10 @@ h1 {
     display: none;
 }
 
+#alert-success{
+    margin: 30px;
+}
+
 #div-modify-user-title {
     padding: 25px 60px 16px;
     margin-top: 30px;
