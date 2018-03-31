@@ -41,6 +41,9 @@ if (isset($_POST['btn-signup'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
     <script src="js/script.js" type="text/javascript"></script>
 </head>
 <body>
@@ -49,7 +52,7 @@ if (isset($_POST['btn-signup'])) {
         <!--PHP Best Practices :)-->
         <div id="div-bp">
             <button type="button" class="btn btn-outline-info btn-lg" id="btn-showbp"
-                    onclick="new function() {$('#btn-bp').show();}">Show PHP best practices
+                    onclick="new function() {$('#btn-bp').show(200);}">Show PHP best practices
             </button>
             <div class="alert alert-info" role="alert" id="btn-bp">1. Use something else :)</div>
         </div>
@@ -62,16 +65,18 @@ if (isset($_POST['btn-signup'])) {
             if (isset($error)) {
                 ?>
                 <!--Error alert-->
-                <div class="alert alert-danger">
+                <div class="alert alert-danger" id="signup-alert-error">
                     <?php echo $error; ?>
                 </div>
+                <script>$('#signup-alert-error').hide().show('slide', {direction: 'up'}, 200);</script>
                 <?php
             } else if (isset($_GET['joined'])) {
                 ?>
                 <!--Success alert-->
-                <div class="alert alert-success">
+                <div class="alert alert-success" id="signup-alert-success">
                     Successfully registered! <a href="index.php" class="alert-link">Login here </a>
                 </div>
+                <script>$('#signup-alert-success').hide().show('slide', {direction: 'up'}, 200);</script>
                 <?php
             }
             ?>

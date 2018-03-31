@@ -37,6 +37,9 @@ if (isset($_POST['btn-login'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="login-form">
@@ -44,7 +47,7 @@ if (isset($_POST['btn-login'])) {
         <!--PHP Best Practices :)-->
         <div id="div-bp">
             <button type="button" class="btn btn-outline-info btn-lg" id="btn-showbp"
-                    onclick="new function() {$('#btn-bp').show();}">Show PHP best practices
+                    onclick="new function() {$('#btn-bp').show(200);}">Show PHP best practices
             </button>
             <div class="alert alert-info" role="alert" id="btn-bp">1. Use something else :)</div>
         </div>
@@ -57,9 +60,10 @@ if (isset($_POST['btn-login'])) {
                 <?php
                 if (isset($error)) {
                     ?>
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger" id="login-alert-error">
                         <?php echo $error; ?>! <a href="register.php" class="alert-link">Sign up</a> now
                     </div>
+                    <script>$('#login-alert-error').hide().show('slide', {direction: 'up'}, 200);</script>
                     <?php
                 }
                 ?>
