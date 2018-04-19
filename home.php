@@ -143,9 +143,7 @@ if(isset($_GET['err'])){
                 <strong>Success!</strong> <?php echo $success ?>
             </div>
             <script>
-                $('#alert-success').fadeTo(3000, 500).slideUp(500, function(){
-                    $('#alert-success').slideUp(500);
-                });
+                $('#alert-success').hide().show('slide', {direction: 'up'}, 200);
                 $('#div-modify-user').html("");
             </script>
             <?php
