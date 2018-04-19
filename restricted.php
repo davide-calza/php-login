@@ -70,6 +70,48 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
             <div class="card-footer text-muted">joined on <?php print($row['joining']); ?></div>
         </div>
     </div>
+    <div class="col-md-7">
+        <div class="card text-left border-info">
+            <div class="card-header bg-info text-white">README</div>
+            <div class="card-body" id="readme">
+                <h1 id="php-login">PHP Login</h1>
+                <hr />
+                <p>A simple, <strong>&quot;grandma-proof&quot;</strong> login system written in <strong>PHP</strong>. <br>Once registered and logged, you can add and delete other users, or modify their informations. <br>Password are encrypted with salty systems.</p>
+                <br />
+                <h2 id="prerequisites">Prerequisites</h2>
+                <ul>
+                    <li>MySQL</li>
+                    <li>PHP </li>
+                    <li>MySQL PDO extension </li>
+                </ul>
+                <br />
+                <h2 id="to-manage-the-database">To manage the database</h2>
+                <p>You can find the database dump in <strong>cont/php-login-db.sql</strong>  <br>Edit <strong>database.php</strong> before starting the server. </p>
+                <p><em>Example:</em></p>
+                <div id="readme-code">
+                    <span class="decl">private</span> <span class="variable">$host</span> = <span class="string">&quot;localhost&quot;</span>; <br>
+                    <span class="decl">private</span> <span class="variable">$database</span> = <span class="string">&quot;db_name&quot;</span>; <br>
+                    <span class="decl">private</span> <span class="variable">$username</span> = <span class="string">&quot;mysql_user&quot;</span>; <br>
+                    <span class="decl">private</span> <span class="variable">$password</span> = <span class="string">&quot;mysql_password&quot;</span>;
+                </div>
+                <br />
+                <h4 id="technologies">Technologies</h4>
+                <ul>
+                    <li><a href="https://secure.php.net">PHP 7.2.3</a></li>
+                    <li><a href="https://getbootstrap.com">Bootstrap 4.0.0</a> </li>
+                    <li><a href="https://jquery.com">jQuery</a></li>
+                    <li><a href="https://jqueryui.com">jQuery UI</a></li>
+                    <li><a href="https://popper.js.org">Popper</a></li>
+                </ul>
+                <br />
+                <h4 id="credits">Credits</h4>
+                <ul>
+                    <li><a href="https://www.flaticon.com/">Flaticon</a></li>
+                </ul>
+            </div>
+            <div class="card-footer text-muted"><a href="https://github.com/davide-calza">Find me on Github!</a></div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
