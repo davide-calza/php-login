@@ -58,6 +58,18 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
     </div>
 </nav>
 <!--Body-->
-
+<div class="row" id="home-body-res">
+    <div class="col-md-4">
+        <div class="card text-left border-info">
+            <div class="card-header bg-info text-white">Info</div>
+            <div class="card-body">
+                <h3 class="card-title"><?php print($row['username']); ?></h3>
+                <p class="card-text"><?php print($row['email']); ?></p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            <div class="card-footer text-muted">joined on <?php print($row['joining']); ?></div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
