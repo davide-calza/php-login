@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 html, body, .login-form, .body-container, .bp-form {
-    background: #263238;
+    background: #263238!important;
 }
 
 /********** index.php **********/

@@ -47,6 +47,21 @@ if (isset($_POST['btn-signup'])) {
     <script src="js/script.js" type="text/javascript"></script>
 </head>
 <body>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="home-navbar">
+    <!--Title-->
+    <a class="navbar-brand" id="home-title" href="home.php">PHP Login</a>
+    <!--Collapse buttons-->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!--Home-->
+            <li class="nav-item active">
+                <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Body -->
 <div class="login-form">
     <div class="container">
         <!--PHP Best Practices :)-->
