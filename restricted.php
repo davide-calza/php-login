@@ -65,12 +65,11 @@ $row = $query->fetch(PDO::FETCH_ASSOC);
             <div class="card-body">
                 <h3 class="card-title"><?php print($row['username']); ?></h3>
                 <p class="card-text"><?php print($row['email']); ?></p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
             <div class="card-footer text-muted">joined on <?php print($row['joining']); ?></div>
         </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7" style="margin-left: 50px;">
         <div class="card text-left border-info">
             <div class="card-header bg-info text-white">README</div>
             <div class="card-body" id="readme">
