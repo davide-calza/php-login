@@ -1,6 +1,6 @@
 # PHP Login
 A simple, **"grandma-proof"** login system written in **PHP**. <br />
-Once registered and logged, you can add and delete other users, or modify their informations. <br />
+Once registered and logged, you can add and delete other users, or modify their information. <br />
 Password are encrypted with salty systems.
 
 ## Prerequisites 
